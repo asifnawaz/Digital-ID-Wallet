@@ -185,7 +185,7 @@ export default class SlateMediaObjectPreview extends React.Component {
       );
     }
 
-    let name = (file.data?.name || file.filename).substring(0, this.charCap);
+    let name = (file.data?.name || file.filename || "").substring(0, this.charCap);
     let extension = Strings.getFileExtension(file.filename);
     if (extension && extension.length) {
       extension = extension.toUpperCase();
@@ -197,7 +197,9 @@ export default class SlateMediaObjectPreview extends React.Component {
         style={{ color: Constants.system.textGray }}
       />
     );
-
+    // if (!file.filename) {
+    //   console.log(file);
+    // }
     if (Validations.isFontFile(file.filename)) {
       return (
         <article

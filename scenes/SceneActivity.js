@@ -6,6 +6,7 @@ import * as SVG from "~/common/svg";
 import * as Actions from "~/common/actions";
 import * as Events from "~/common/custom-events";
 import * as Styles from "~/common/styles";
+import * as ActivityUtilities from "~/common/activity-utilities";
 
 import { GlobalCarousel } from "~/components/system/components/GlobalCarousel";
 import { css } from "@emotion/react";
@@ -213,9 +214,20 @@ export default class SceneActivity extends React.Component {
     }
   };
 
+  getTab = () => {
+    if (!this.props.viewer) {
+      return "explore";
+    }
+    return this.props.page.params?.tab || "explore";
+  };
+
   fetchActivityItems = async (update = false) => {
     if (this.state.loading === "loading") return;
     let tab = this.getTab();
+<<<<<<< HEAD
+=======
+
+>>>>>>> e3ef4c62... added activity grouping function
     const isExplore = tab === "explore";
     this.setState({ loading: "loading" });
     let activity;
@@ -248,13 +260,11 @@ export default class SceneActivity extends React.Component {
     }
 
     let newItems = response.data || [];
+    newItems = ActivityUtilities.processActivity(newItems);
 
     if (update) {
       activity.unshift(...newItems);
-      this.counter = 0;
-      activity = this.formatActivity(activity);
     } else {
-      newItems = this.formatActivity(newItems);
       activity.push(...newItems);
     }
 
@@ -270,52 +280,11 @@ export default class SceneActivity extends React.Component {
     }
   };
 
-  formatActivity = (userActivity) => {
-    let activity = [];
-    for (let item of userActivity) {
-      // if (item.slate && !item.slate.isPublic) {
-      //   continue;
-      // }
-      if (item.type === "CREATE_SLATE_OBJECT") {
-        //&& item.slate && item.file
-        activity.push(item);
-      } else if (item.type === "CREATE_SLATE" && item.slate) {
-        activity.push(item);
-      }
-    }
-    return activity; //NOTE(martina): because now it's only things of CREATE_SLATE_OBJECT type, so all square and don't need reordering
-    //NOTE(martina): rearrange order to always get an even row of 6 squares
-    //TODO(martina): improve this. will fail if there are no more squares left to "swap" with at the end, and you'll end up wtih an empty space
-    // let activity = userActivity || [];
-    // for (let i = 0; i < activity.length; i++) {
-    //   let item = activity[i];
-    //   if (item.type === "CREATE_SLATE") {
-    //     this.counter += 2;
-    //   } else if (item.type === "CREATE_SLATE_OBJECT") {
-    //     this.counter += 1;
-    //   }
-    //   if (this.counter === 6) {
-    //     this.counter = 0;
-    //   } else if (this.counter > 6) {
-    //     let j = i - 1;
-    //     while (activity[j].type !== "CREATE_SLATE_OBJECT") {
-    //       j -= 1;
-    //     }
-    //     let temp = activity[j];
-    //     activity[j] = activity[i];
-    //     activity[i] = temp;
-    //     this.counter = 0;
-    //     i -= 1;
-    //   }
-    // }
-    // return activity;
-  };
-
   calculateWidth = () => {
     let windowWidth = window.innerWidth;
     let imageSize;
     if (windowWidth < Constants.sizes.mobile) {
-      imageSize = windowWidth - 2 * 24; //(windowWidth - 2 * 24 - 20) / 2;
+      imageSize = windowWidth - 2 * 24;
     } else {
       imageSize = (windowWidth - 2 * 56 - 5 * 20) / 6;
     }
@@ -330,24 +299,12 @@ export default class SceneActivity extends React.Component {
   render() {
     let tab = this.getTab();
     let activity;
-
     if (this.props.viewer) {
       activity =
         tab === "activity" ? this.props.viewer?.activity || [] : this.props.viewer?.explore || [];
     } else {
       activity = this.state.explore || [];
     }
-
-    let items = activity
-      .filter((item) => item.type === "CREATE_SLATE_OBJECT")
-      .map((item) => {
-        return {
-          ...item.file,
-          slateId: item.slateId,
-          // slate: item.slate,
-          // owner: item.owner?.username,
-        };
-      });
 
     return (
       <WebsitePrototypeWrapper
@@ -379,7 +336,6 @@ export default class SceneActivity extends React.Component {
               this.setState({ carouselIndex: index });
             }}
             isMobile={this.props.isMobile}
-            // params={this.props.page.params}
             isOwner={false}
           />
           {activity.length ? (
@@ -392,25 +348,10 @@ export default class SceneActivity extends React.Component {
                         redirect
                         key={i}
                         disabled={this.props.isMobile ? false : true}
-                        // params={
-                        //   this.props.isMobile
-                        //     ? null
-                        //     : { ...this.props.page.params, cid: item.file.cid }
-                        // }
                         href={`/$/slate/${item.slateId}`}
                         onAction={this.props.onAction}
                         onClick={() => this.setState({ carouselIndex: i })}
                       >
-                        {/* <span
-                      key={item.id}
-                      onClick={() =>
-                        this.props.onAction({
-                          type: "NAVIGATE",
-                          value: "NAV_SLATE",
-                          data: item.slate,
-                        })
-                      }
-                    > */}
                         <ActivityRectangle
                           width={
                             this.props.isMobile
@@ -420,7 +361,6 @@ export default class SceneActivity extends React.Component {
                           height={this.state.imageSize}
                           item={item}
                         />
-                        {/* </span> */}
                       </Link>
                     );
                   } else if (item.type === "CREATE_SLATE_OBJECT") {
@@ -429,23 +369,9 @@ export default class SceneActivity extends React.Component {
                         redirect
                         key={i}
                         disabled={this.props.isMobile ? false : true}
-                        // params={
-                        //   this.props.isMobile
-                        //     ? null
-                        //     : { ...this.props.page.params, cid: item.file.cid }
-                        // }
                         href={`/$/slate/${item.slateId}?cid=${item.file.cid}`}
                         onAction={this.props.onAction}
                         onClick={() => this.setState({ carouselIndex: i })}
-                        // onClick={
-                        //   this.props.isMobile
-                        //     ? () => {}
-                        //     : () =>
-                        //         Events.dispatchCustomEvent({
-                        //           name: "slate-global-open-carousel",
-                        //           detail: { index: this.getItemIndexById(items, item) },
-                        //         })
-                        // }
                       >
                         <ActivitySquare
                           size={this.state.imageSize}
