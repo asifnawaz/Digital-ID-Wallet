@@ -11,6 +11,7 @@ const CONTAINS_UPPERCASE_REGEX = /[A-Z]/;
 const CONTAINS_LOWERCASE_REGEX = /[a-z]/;
 const CONTAINS_SYMBOL_REGEX = /[ !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/;
 const PIN_REGEX = /^[0-9]{6}$/;
+const URL_REGEX = /(http(s)?:\/\/.)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&\/=]*)/;
 
 // TODO(jim): Regex should cover some of this.
 const REJECT_LIST = [
@@ -191,6 +192,19 @@ export const verificationPin = (pin) => {
   }
 
   return PIN_REGEX.test(pin);
+};
+
+export const link = (text) => {
+  if (Strings.isEmpty(text)) {
+    return false;
+  }
+
+  if (text.length < 4) {
+    return false;
+  }
+
+  console.log(URL_REGEX.test(text));
+  return URL_REGEX.test(text);
 };
 
 export const isPreviewableImage = (type = "") => {

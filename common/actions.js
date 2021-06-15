@@ -1,4 +1,5 @@
 import "isomorphic-fetch";
+import microlink from "@microlink/mql";
 
 import * as Websockets from "~/common/browser-websockets";
 import * as Strings from "~/common/strings";
@@ -37,10 +38,14 @@ const CORS_OPTIONS = {
 };
 
 const returnJSON = async (route, options) => {
-  const response = await fetch(route, options);
-  const json = await response.json();
+  try {
+    const response = await fetch(route, options);
+    const json = await response.json();
 
-  return json;
+    return json;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const createZipToken = async ({ files, resourceURI }) => {
@@ -78,6 +83,11 @@ export const sendFilecoin = async (data) => {
     ...DEFAULT_OPTIONS,
     body: JSON.stringify({ data }),
   });
+};
+
+export const mql = async (url) => {
+  const res = await microlink(url, { screenshot: true });
+  return res;
 };
 
 export const checkUsername = async (data) => {

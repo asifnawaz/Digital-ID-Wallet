@@ -271,7 +271,12 @@ export class Input extends React.Component {
                 onClick={this.props.onClickIcon || this.props.onSubmit || this._handleSubmit}
               />
             ) : this.props.copyable ? (
-              <SVG.CopyAndPaste height="16px" css={STYLES_ICON} onClick={this._handleCopy} />
+              <SVG.CopyAndPaste
+                height="16px"
+                css={STYLES_ICON}
+                style={{ cursor: "pointer" }}
+                onClick={this._handleCopy}
+              />
             ) : null}
           </div>
         </div>

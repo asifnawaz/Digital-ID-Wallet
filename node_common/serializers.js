@@ -32,13 +32,14 @@ export const sanitizeSlate = (entity) => {
     isPublic: entity.isPublic,
     objects: entity.objects,
     user: entity.user, //NOTE(martina): this is not in the database. It is added after
-    data: {
-      name: entity.data?.name,
-      body: entity.data?.body,
-      preview: entity.data?.preview,
-      layouts: entity.data?.layouts,
-      tags: entity.data?.tags,
-    },
+    data: entity.data,
+    // data: {
+    //   name: entity.data?.name,
+    //   body: entity.data?.body,
+    //   preview: entity.data?.preview,
+    //   layouts: entity.data?.layouts,
+    //   tags: entity.data?.tags,
+    // },
     fileCount: entity.fileCount,
     subscriberCount: entity.subscriberCount,
   };
@@ -52,20 +53,20 @@ export const sanitizeFile = (entity) => {
     isPublic: entity.isPublic,
     filename: entity.filename,
     createdAt: entity.createdAt,
-    data: {
-      type: entity.data?.type,
-      name: entity.data?.name,
-      size: entity.data?.size,
-      body: entity.data?.body,
-      source: entity.data?.source,
-      author: entity.data?.author,
-      blurhash: entity.data?.blurhash,
-      coverImage: entity.data?.coverImage,
-      downloads: entity.data?.downloads, //NOTE(martina): newly added
-      tags: entity.data?.tags, //NOTE(martina): newly added
-      unity: entity.data?.unity, //NOTE(martina): newly added
-      link: entity.data?.link, //NOTE(martina): newly added
-    },
+    data: entity.data,
+    // data: {
+    //   type: entity.data?.type,
+    //   name: entity.data?.name,
+    //   size: entity.data?.size,
+    //   body: entity.data?.body,
+    //   source: entity.data?.source,
+    //   author: entity.data?.author,
+    //   blurhash: entity.data?.blurhash,
+    //   coverImage: entity.data?.coverImage,
+    //   tags: entity.data?.tags, //NOTE(martina): newly added
+    //   unity: entity.data?.unity, //NOTE(martina): newly added
+    //   link: entity.data?.link, //NOTE(martina): newly added
+    // },
     likeCount: entity.likeCount,
     downloadCount: entity.downloadCount,
     saveCount: entity.saveCount,

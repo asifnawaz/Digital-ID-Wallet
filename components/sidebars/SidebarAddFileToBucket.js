@@ -4,7 +4,9 @@ import * as Strings from "~/common/strings";
 import * as System from "~/components/system";
 import * as Store from "~/common/store";
 import * as SVG from "~/common/svg";
+import * as Validations from "~/common/validations";
 import * as Events from "~/common/custom-events";
+import * as FileUtilities from "~/common/file-utilities";
 
 import { css } from "@emotion/react";
 import { DataMeterBar } from "~/components/core/DataMeter";
@@ -76,6 +78,21 @@ const STYLES_PERFORMANCE = css`
 `;
 
 export default class SidebarAddFileToBucket extends React.Component {
+  state = {
+    url: "",
+  };
+
+  async componentDidMount() {
+    this.populateLinkFromClipboard();
+  }
+
+  populateLinkFromClipboard = async () => {
+    const clipboardText = await navigator.clipboard.readText();
+    if (Validations.link(clipboardText)) {
+      this.setState({ url: clipboardText });
+    }
+  };
+
   _handleUpload = (e) => {
     this.props.onUpload({
       files: e.target.files,
@@ -87,12 +104,21 @@ export default class SidebarAddFileToBucket extends React.Component {
     this.props.onCancel();
   };
 
+  _handleChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   _handleCancel = (e, key) => {
     e.preventDefault();
     e.stopPropagation();
     Events.dispatchCustomEvent({ name: `cancel-${key}` }); //NOTE(martina): so that will cancel if is in the middle of uploading
     Store.setCancelled(key); //NOTE(martina): so that will cancel if hasn't started uploading yet
     this.props.onAction({ type: "REGISTER_FILE_CANCELLED", value: key }); //NOTE(martina): so that fileLoading registers it
+  };
+
+  _handleUploadLink = async () => {
+    //validate link first obviously
+    await FileUtilities.uploadLink({ url: this.state.url });
   };
 
   render() {
@@ -147,8 +173,33 @@ export default class SidebarAddFileToBucket extends React.Component {
 
             <SidebarWarningMessage />
 
+            <System.Input
+              name="url"
+              type="url"
+              value={this.state.url}
+              placeholder="URL"
+              onChange={this._handleChange}
+              style={{ marginTop: 48 }}
+            />
+
+            <System.ButtonPrimary
+              full
+              type="label"
+              style={{ marginTop: 24 }}
+              onClick={this._handleUploadLink}
+            >
+              Add link
+            </System.ButtonPrimary>
+
+            <System.Divider
+              color="#AEAEB2"
+              width="45px"
+              height="0.5px"
+              style={{ margin: "0px auto", marginTop: "20px" }}
+            />
+
             <System.ButtonPrimary full type="label" htmlFor="file" style={{ marginTop: 24 }}>
-              Add file
+              Upload file
             </System.ButtonPrimary>
             <br />
           </React.Fragment>

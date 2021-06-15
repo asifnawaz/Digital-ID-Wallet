@@ -382,10 +382,13 @@ class CarouselSidebar extends React.Component {
       Events.dispatchCustomEvent({ name: "slate-global-open-cta", detail: {} });
       return;
     }
-    this.setState({ loading: "savingCopy" });
-
-    await UserBehaviors.saveCopy({ files: [data] });
-    this.setState({ loading: false });
+    this.setState({ loading: "savingCopy" }, async () => {
+      console.log("before the call");
+      let response = await UserBehaviors.saveCopy({ files: [data] });
+      console.log("after the call");
+      Events.hasError(response);
+      this.setState({ loading: false });
+    });
   };
 
   _handleUpload = async (e) => {

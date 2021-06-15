@@ -156,7 +156,7 @@ export default class ApplicationPage extends React.Component {
     const clipboardItems = e.clipboardData.items || [];
     if (!clipboardItems) return;
 
-    const { fileLoading, toUpload } = UserBehaviors.formatPastedImages({
+    const { fileLoading, toUpload } = FileUtilities.formatPastedImages({
       clipboardItems,
     });
 
@@ -168,10 +168,12 @@ export default class ApplicationPage extends React.Component {
       slate = this.state.data;
     }
 
-    this._handleUpload({
+    FileUtilities.uploadFiles({
       files: toUpload,
       slate,
       keys: Object.keys(fileLoading),
+      resources: this.props.resources,
+      context: this,
     });
   };
 
@@ -292,7 +294,7 @@ export default class ApplicationPage extends React.Component {
   _handleDrop = async (e) => {
     e.preventDefault();
     this.setState({ sidebar: null });
-    const { fileLoading, files, numFailed, error } = await UserBehaviors.formatDroppedFiles({
+    const { fileLoading, files, numFailed, error } = await FileUtilities.formatDroppedFiles({
       dataTransfer: e.dataTransfer,
     });
 
@@ -308,102 +310,28 @@ export default class ApplicationPage extends React.Component {
     }
 
     this._handleRegisterFileLoading({ fileLoading });
-    this._handleUpload({ files, slate, keys: Object.keys(fileLoading), numFailed });
+    FileUtilities.uploadFiles({
+      files,
+      slate,
+      keys: Object.keys(fileLoading),
+      numFailed,
+      resources: this.props.resources,
+      context: this,
+    });
   };
 
   _handleUploadFiles = async ({ files, slate }) => {
-    const { fileLoading, toUpload, numFailed } = UserBehaviors.formatUploadedFiles({ files });
+    const { fileLoading, toUpload, numFailed } = FileUtilities.formatUploadedFiles({ files });
 
     this._handleRegisterFileLoading({ fileLoading });
-    this._handleUpload({
+    FileUtilities.uploadFiles({
       files: toUpload,
       slate,
       keys: Object.keys(fileLoading),
       numFailed,
+      resources: this.props.resources,
+      context: this,
     });
-  };
-
-  _handleUpload = async ({ files, slate, keys, numFailed = 0 }) => {
-    if (!files || !files.length) {
-      this._handleRegisterLoadingFinished({ keys });
-      return;
-    }
-
-    const resolvedFiles = [];
-    for (let i = 0; i < files.length; i++) {
-      if (Store.checkCancelled(`${files[i].lastModified}-${files[i].name}`)) {
-        continue;
-      }
-
-      // NOTE(jim): With so many failures, probably good to wait a few seconds.
-      await Window.delay(3000);
-
-      // NOTE(jim): Sends XHR request.
-      let response;
-      try {
-        response = await FileUtilities.upload({
-          file: files[i],
-          context: this,
-          routes: this.props.resources,
-        });
-      } catch (e) {
-        Logging.error(e);
-      }
-
-      if (!response || response.error) {
-        continue;
-      }
-      resolvedFiles.push(response);
-    }
-
-    if (!resolvedFiles.length) {
-      this._handleRegisterLoadingFinished({ keys });
-      return;
-    }
-    //NOTE(martina): this commented out portion is only for if parallel uploading
-    // let responses = await Promise.allSettled(resolvedFiles);
-    // let succeeded = responses
-    //   .filter((res) => {
-    //     return res.status === "fulfilled" && res.value && !res.value.error;
-    //   })
-    //   .map((res) => res.value);
-
-    let createResponse = await Actions.createFile({ files: resolvedFiles, slate });
-
-    if (Events.hasError(createResponse)) {
-      this._handleRegisterLoadingFinished({ keys });
-      return;
-    }
-
-    const { added, skipped } = createResponse.data;
-
-    // let uploadedFiles = createResponse.data;
-
-    // let added, skipped;
-    // if (slate && slate.id) {
-    //   const addResponse = await Actions.addFileToSlate({
-    //     slate,
-    //     files: uploadedFiles,
-    //   });
-
-    //   if (Events.hasError(addResponse)) {
-    //     this._handleRegisterLoadingFinished({ keys });
-    //     return;
-    //   }
-
-    //   added = addResponse.added;
-    //   skipped = addResponse.skipped;
-    // } else {
-    //   added = resolvedFiles.length;
-    //   skipped = files.length - resolvedFiles.length;
-    // }
-    // let added = uploadedFiles.length;
-    // let skipped = files.length - uploadedFiles.length;
-
-    let message = Strings.formatAsUploadMessage(added, skipped + numFailed, slate);
-    Events.dispatchMessage({ message, status: !added ? null : "INFO" });
-
-    this._handleRegisterLoadingFinished({ keys });
   };
 
   _handleRegisterFileLoading = ({ fileLoading }) => {
@@ -438,11 +366,7 @@ export default class ApplicationPage extends React.Component {
     }
 
     // NOTE(jim): Only allow the sidebar to show with file drag and drop.
-    if (
-      e.dataTransfer.items &&
-      e.dataTransfer.items.length &&
-      e.dataTransfer.items[0].kind !== "file"
-    ) {
+    if (e.dataTransfer?.items?.length && e.dataTransfer.items[0].kind !== "file") {
       return;
     }
 
@@ -459,16 +383,6 @@ export default class ApplicationPage extends React.Component {
   _handleDragOver = (e) => {
     e.preventDefault();
   };
-
-  // _handleCreateUser = async (state) => {
-  //   let response = await Actions.createUser(state);
-
-  //   if (Events.hasError(response)) {
-  //     return;
-  //   }
-
-  //   return this._handleAuthenticate(state, true);
-  // };
 
   _withAuthenticationBehavior = (authenticate) => async (state, newAccount) => {
     let response = await authenticate(state);
@@ -522,22 +436,6 @@ export default class ApplicationPage extends React.Component {
 
     return response;
   };
-
-  // _handleURLRedirect = () => {
-  //   const id = Window.getQueryParameterByName("scene");
-  //   const username = Window.getQueryParameterByName("username");
-  //   const slatename = Window.getQueryParameterByName("slatename");
-  //   const cid = Window.getQueryParameterByName("cid");
-
-  //   if (!Strings.isEmpty(id)) {
-  //     this._handleNavigateTo({ id, username, slatename, cid }, null, true);
-  //     return true;
-  //   }
-  //   if (!this.state.loaded) {
-  //     this.setState({ loaded: true });
-  //   }
-  //   return false;
-  // };
 
   _handleSelectedChange = (e) => {
     this.setState({
@@ -653,36 +551,6 @@ export default class ApplicationPage extends React.Component {
       }
     });
   };
-
-  // _handleUpdatePageParams = ({ search, callback }) => {
-  //   if (!search.length) {
-  //     return;
-  //   }
-  //   let target = {};
-  //   let searchParams = search.replace("?", "");
-  //   let pairs = searchParams.split("&");
-  //   for (let pair of pairs) {
-  //     let key = pair.split("=")[0];
-  //     let value = pair.slice(key.length + 1);
-  //     if (key && value) {
-  //       target[key] = value;
-  //     }
-  //   }
-  //   const href = window.location.pathname + "?" + searchParams;
-  //   if (target) {
-  //     window.history.replaceState(null, "Slate", href);
-  //     this.setState({ page: target }, () => {
-  //       if (callback) {
-  //         callback();
-  //       }
-  //     });
-  //   } else {
-  //     window.history.replaceState(null, "Slate", href);
-  //     if (callback) {
-  //       callback();
-  //     }
-  //   }
-  // };
 
   _handleBackForward = () => {
     let href = window.location.pathname.concat(

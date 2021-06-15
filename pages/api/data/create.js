@@ -38,8 +38,7 @@ export default async (req, res) => {
   let files;
   if (req.body.data.file) {
     files = [req.body.data.file];
-  }
-  if (req.body.data.files) {
+  } else if (req.body.data.files) {
     files = req.body.data.files;
   } else {
     return res.status(400).send({ decorator: "SERVER_CREATE_FILE_NO_FILE_PROVIDED", error: true });

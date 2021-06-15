@@ -93,6 +93,10 @@ export default class SlateMediaObject extends React.Component {
 
     let element = <div css={STYLES_FAILURE}>No Preview</div>;
 
+    if (type === "link") {
+      return <iframe src={file.data.link.url} css={STYLES_IFRAME} />;
+    }
+
     if (type.startsWith("application/pdf")) {
       return (
         <>
