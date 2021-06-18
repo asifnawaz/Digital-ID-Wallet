@@ -82,17 +82,6 @@ export default class SidebarAddFileToBucket extends React.Component {
     url: "",
   };
 
-  async componentDidMount() {
-    this.populateLinkFromClipboard();
-  }
-
-  populateLinkFromClipboard = async () => {
-    const clipboardText = await navigator.clipboard.readText();
-    if (Validations.link(clipboardText)) {
-      this.setState({ url: clipboardText });
-    }
-  };
-
   _handleUpload = (e) => {
     this.props.onUpload({
       files: e.target.files,

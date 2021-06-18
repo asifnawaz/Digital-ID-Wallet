@@ -48,6 +48,13 @@ const returnJSON = async (route, options) => {
   }
 };
 
+export const uploadFromUrl = async (data) => {
+  return await returnJSON(`${data.resourceURI}/api/data/url`, {
+    ...CORS_OPTIONS,
+    body: JSON.stringify({ data }),
+  });
+};
+
 export const createZipToken = async ({ files, resourceURI }) => {
   return await returnJSON(`${resourceURI}/api/download/create-zip-token`, {
     ...CORS_OPTIONS,

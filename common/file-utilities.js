@@ -52,7 +52,7 @@ const getCookie = (name) => {
   if (match) return match[2];
 };
 
-export const uploadLink = async ({ url, slate }) => {
+export const uploadLink = async ({ url, slate, context }) => {
   //detect that a link is in teh clip board and ask "would you like to add ___ to slate"
   const { status, data } = await Actions.mql(url);
   console.log(status);
@@ -96,6 +96,13 @@ export const uploadLink = async ({ url, slate }) => {
   if (Events.hasError(createResponse)) {
     return;
   }
+  console.log(createResponse.id);
+  Actions.uploadFromUrl({
+    url: data.screenshot.url,
+    targetId: createResponse.id,
+    updateType: "COVER_IMAGE_URL",
+    resourceURI: context.props.resources.upload,
+  });
 };
 
 export const uploadFiles = async ({ context, files, slate, keys, numFailed = 0 }) => {
