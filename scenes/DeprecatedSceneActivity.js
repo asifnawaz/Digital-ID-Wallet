@@ -18,6 +18,7 @@ import EmptyState from "~/components/core/EmptyState";
 import ScenePage from "~/components/core/ScenePage";
 import ObjectPreview from "~/components/core/ObjectPreview";
 import WebsitePrototypeWrapper from "~/components/core/WebsitePrototypeWrapper";
+import ActivityObjectPreview from "~/components/core/ActivityObjectPreview";
 
 const STYLES_LOADER = css`
   display: flex;
@@ -311,7 +312,7 @@ export default class SceneActivity extends React.Component {
         title={`${this.props.page.pageTitle} • Slate`}
         url={`${Constants.hostname}${this.props.page.pathname}`}
       >
-        <ScenePage>
+        <ScenePage style={{ backgroundColor: "#F2F2F7" }}>
           {this.props.viewer && (
             <SecondaryTabGroup
               tabs={[
