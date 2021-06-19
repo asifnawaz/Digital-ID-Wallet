@@ -1,5 +1,3 @@
-import * as Logging from "~/common/logging";
-
 import { runQuery } from "~/node_common/data/utilities";
 
 export default async ({
@@ -21,11 +19,40 @@ export default async ({
       "3cad78ea-01ad-4c92-8983-a97524fb9e35",
     ]);
   }
+  // const slateFiles = DB.raw(
+  //   "coalesce(json_agg(?? order by ?? asc) filter (where ?? is not null), '[]') as ??",
+  //   ["files", "slate_files.createdAt", "files.id", "objects"]
+  // );
+  const slateFilesFields = ["files", "slate_files.createdAt", "files.id", "objects"];
+  const slateFilesQuery = `coalesce(json_agg(?? order by ?? asc) filter (where ?? is not null), '[]') as ??`;
+
+  const slateFields = [
+    "slate_table",
+    "slates.id",
+    "slates.slatename",
+    "slates.data",
+    "slates.ownerId",
+    "slates.isPublic",
+    "slates.subscriberCount",
+    "slates.fileCount",
+    ...slateFilesFields,
+    "slates",
+    "slate_files",
+    "slate_files.slateId",
+    "slates.id",
+    "files",
+    "files.id",
+    "slate_files.fileId",
+    "slates.id",
+  ];
+  const slateQuery = `WITH ?? as (SELECT ??, ??, ??, ??, ??, ??, ??, ${slateFilesQuery} FROM ?? LEFT JOIN ?? on ?? = ?? LEFT JOIN ?? on ?? = ?? GROUP BY ??)`;
+
   const selectFields = [
+    ...slateFields,
     "activity.id",
     "activity.type",
     "activity.createdAt",
-    "slates",
+    "slate_table",
     "slate",
     "files",
     "file",
@@ -34,8 +61,8 @@ export default async ({
     "owners",
     "owner",
     "activity",
-    "slates",
-    "slates.id",
+    "slate_table",
+    "slate_table.id",
     "activity.slateId",
     "users",
     "users.id",
@@ -47,13 +74,13 @@ export default async ({
     "owners",
     "owners.id",
     "activity.ownerId",
-    "activity.ownerId",
-    usersFollowing,
-    "activity.slateId",
-    subscriptions,
   ];
-  const selectQuery =
-    "SELECT ??, ??, ??, row_to_json(??) as ??, row_to_json(??) as ??, row_to_json(??) as ??, row_to_json(??) as ?? FROM ?? LEFT JOIN ?? ON ?? = ?? LEFT JOIN ?? ON ?? = ?? LEFT JOIN ?? ON ?? = ?? LEFT JOIN ?? AS ?? ON ?? = ??";
+  const selectQuery = `${slateQuery} SELECT ??, ??, ??, row_to_json(??) as ??, row_to_json(??) as ??, row_to_json(??) as ??, row_to_json(??) as ?? FROM ?? LEFT JOIN ?? ON ?? = ?? LEFT JOIN ?? ON ?? = ?? LEFT JOIN ?? ON ?? = ?? LEFT JOIN ?? AS ?? ON ?? = ??`;
+  // const selectQuery =
+  //   "SELECT ??, ??, ??, row_to_json(??) as ??, row_to_json(??) as ??, row_to_json(??) as ??, row_to_json(??) as ?? FROM ?? LEFT JOIN ?? ON ?? = ?? LEFT JOIN ?? ON ?? = ?? LEFT JOIN ?? ON ?? = ?? LEFT JOIN ?? AS ?? ON ?? = ??";
+
+  const conditionFields = ["activity.ownerId", usersFollowing, "activity.slateId", subscriptions];
+
   return await runQuery({
     label: "GET_ACTIVITY_FOR_USER_ID",
     queryFn: async (DB) => {
@@ -64,7 +91,13 @@ export default async ({
         date.setSeconds(date.getSeconds() - 1);
         query = await DB.raw(
           `${selectQuery} WHERE (?? = ANY(?) OR ?? = ANY(?)) AND ?? < ?? ORDER BY ?? DESC LIMIT 100`,
-          [...selectFields, "activity.createdAt", date.toISOString(), "activity.createdAt"]
+          [
+            ...selectFields,
+            ...conditionFields,
+            "activity.createdAt",
+            date.toISOString(),
+            "activity.createdAt",
+          ]
         );
       } else if (latestTimestamp) {
         //NOTE(martina): for fetching new updates since the last time they loaded
@@ -72,13 +105,19 @@ export default async ({
         date.setSeconds(date.getSeconds() + 1);
         query = await DB.raw(
           `${selectQuery} WHERE (?? = ANY(?) OR ?? = ANY(?)) AND ?? > ?? ORDER BY ?? DESC LIMIT 100`,
-          [...selectFields, "activity.createdAt", date.toISOString(), "activity.createdAt"]
+          [
+            ...selectFields,
+            ...conditionFields,
+            "activity.createdAt",
+            date.toISOString(),
+            "activity.createdAt",
+          ]
         );
       } else {
         //NOTE(martina): for the first fetch they make, when they have not loaded any explore events yet
         query = await DB.raw(
           `${selectQuery} WHERE ?? = ANY(?) OR ?? = ANY(?) ORDER BY ?? DESC LIMIT 100`,
-          [...selectFields, "activity.createdAt"]
+          [...selectFields, ...conditionFields, "activity.createdAt"]
         );
       }
       if (query?.rows) {
@@ -90,7 +129,7 @@ export default async ({
       return JSON.parse(JSON.stringify(query));
     },
     errorFn: async (e) => {
-      Logging.error({
+      console.log({
         error: true,
         decorator: "GET_ACTIVITY_FOR_USER_ID",
       });

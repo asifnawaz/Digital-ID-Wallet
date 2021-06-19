@@ -1,13 +1,36 @@
-import * as Logging from "~/common/logging";
-
 import { runQuery } from "~/node_common/data/utilities";
 
 export default async ({ earliestTimestamp, latestTimestamp }) => {
+  const slateFilesFields = ["files", "slate_files.createdAt", "files.id", "objects"];
+  const slateFilesQuery = `coalesce(json_agg(?? order by ?? asc) filter (where ?? is not null), '[]') as ??`;
+
+  const slateFields = [
+    "slate_table",
+    "slates.id",
+    "slates.slatename",
+    "slates.data",
+    "slates.ownerId",
+    "slates.isPublic",
+    "slates.subscriberCount",
+    "slates.fileCount",
+    ...slateFilesFields,
+    "slates",
+    "slate_files",
+    "slate_files.slateId",
+    "slates.id",
+    "files",
+    "files.id",
+    "slate_files.fileId",
+    "slates.id",
+  ];
+  const slateQuery = `WITH ?? as (SELECT ??, ??, ??, ??, ??, ??, ??, ${slateFilesQuery} FROM ?? LEFT JOIN ?? on ?? = ?? LEFT JOIN ?? on ?? = ?? GROUP BY ??)`;
+
   const selectFields = [
+    ...slateFields,
     "activity.id",
     "activity.type",
     "activity.createdAt",
-    "slates",
+    "slate_table",
     "slate",
     "files",
     "file",
@@ -16,8 +39,8 @@ export default async ({ earliestTimestamp, latestTimestamp }) => {
     "owners",
     "owner",
     "activity",
-    "slates",
-    "slates.id",
+    "slate_table",
+    "slate_table.id",
     "activity.slateId",
     "users",
     "users.id",
@@ -30,8 +53,8 @@ export default async ({ earliestTimestamp, latestTimestamp }) => {
     "owners.id",
     "activity.ownerId",
   ];
-  const selectQuery =
-    "SELECT ??, ??, ??, row_to_json(??) as ??, row_to_json(??) as ??, row_to_json(??) as ??, row_to_json(??) as ?? FROM ?? LEFT JOIN ?? ON ?? = ?? LEFT JOIN ?? ON ?? = ?? LEFT JOIN ?? ON ?? = ?? LEFT JOIN ?? AS ?? ON ?? = ??";
+  const selectQuery = `${slateQuery} SELECT ??, ??, ??, row_to_json(??) as ??, row_to_json(??) as ??, row_to_json(??) as ??, row_to_json(??) as ?? FROM ?? LEFT JOIN ?? ON ?? = ?? LEFT JOIN ?? ON ?? = ?? LEFT JOIN ?? ON ?? = ?? LEFT JOIN ?? AS ?? ON ?? = ??`;
+
   return await runQuery({
     label: "GET_EXPLORE",
     queryFn: async (DB) => {
@@ -72,7 +95,7 @@ export default async ({ earliestTimestamp, latestTimestamp }) => {
       return JSON.parse(JSON.stringify(query));
     },
     errorFn: async (e) => {
-      Logging.error({
+      console.log({
         error: true,
         decorator: "GET_EXPLORE",
       });
