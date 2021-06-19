@@ -68,3 +68,31 @@ export const coerceToArray = (input) => {
 };
 
 export const getFileExtension = (filename) => filename?.split(".").pop();
+
+export const getTimeUnitBetween = (date) => {
+  const pastDate = new Date(date);
+  const now = new Date();
+
+  const differenceInSeconds = Math.floor((now - pastDate) / 1000);
+  if (differenceInSeconds < 60) {
+    return differenceInSeconds + "s";
+  }
+
+  const differenceInMinutes = Math.floor(differenceInSeconds / 60);
+  if (differenceInMinutes < 60) {
+    return differenceInMinutes + "m";
+  }
+
+  const differenceInHours = Math.floor(differenceInMinutes / 60);
+  if (differenceInHours < 24) {
+    return differenceInHours + "h";
+  }
+
+  const differenceInDays = Math.floor(differenceInHours / 24);
+  if (differenceInDays < 24) {
+    return differenceInDays + "d";
+  }
+
+  const differenceInMonths = Math.floor(differenceInDays / 30);
+  return differenceInMonths + "M";
+};
