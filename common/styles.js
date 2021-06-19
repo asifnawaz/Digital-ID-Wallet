@@ -21,25 +21,22 @@ export const HEADING_02 = css`
 `;
 
 export const HEADING_03 = css`
-  font-family: ${Constants.font.text};
+  font-family: ${Constants.font.medium};
   font-size: 1.25rem;
-  font-weight: medium;
   line-height: 1.5;
   letter-spacing: -0.02px;
 `;
 
 export const HEADING_04 = css`
-  font-family: ${Constants.font.text};
+  font-family: ${Constants.font.medium};
   font-size: 1rem;
-  font-weight: medium;
   line-height: 1.5;
   letter-spacing: -0.01px;
 `;
 
 export const HEADING_05 = css`
-  font-family: ${Constants.font.text};
+  font-family: ${Constants.font.medium};
   font-size: 0.875rem;
-  font-weight: medium;
   line-height: 1.5;
   letter-spacing: -0.01px;
 `;
