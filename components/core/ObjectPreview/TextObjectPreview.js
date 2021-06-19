@@ -35,6 +35,7 @@ const STYLES_TAG = (theme) => css`
 const STYLES_TEXT_PREVIEW = (theme) =>
   css({
     height: "100%",
+    width: "100%",
     margin: "8px",
     backgroundColor: "#FFF",
     borderRadius: "8px",
