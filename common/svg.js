@@ -1,4 +1,4 @@
-export const DeepLink = (props) => {
+export const Link = (props) => {
   return (
     <svg
       width="24"

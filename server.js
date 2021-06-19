@@ -205,9 +205,12 @@ app.prepare().then(async () => {
     }
 
     let { page, redirected } = NavigationData.getByHref(req.path, viewer);
-    if (!redirected) {
-      page.params = req.query;
+    if (redirected) {
+      return res.redirect(page.pathname);
     }
+    // if (!redirected) {
+    page.params = req.query;
+    // }
 
     if (!page) {
       return handler(req, res, req.url, {

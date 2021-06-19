@@ -1,6 +1,7 @@
 import * as Data from "~/node_common/data";
 import * as Utilities from "~/node_common/utilities";
-import * as Strings from "~/common/strings";
+import * as Arrays from "~/common/arrays";
+import * as Validations from "~/common/validations";
 import * as Social from "~/node_common/social";
 import * as ViewerManager from "~/node_common/managers/viewer";
 import * as SearchManager from "~/node_common/managers/search";
@@ -89,13 +90,14 @@ export default async (req, res) => {
     return res.status(500).send({ decorator: "SERVER_NO_BUCKET_DATA", error: true });
   }
 
-  //NOTE(martina): get the cids of the corresponding coverImages that are to be deleted
-  let files = await Data.getFilesByIds({ ids });
-  let cids = files.map((file) => file.cid);
+  // NOTE(martina): get the cids of the corresponding coverImages that are to be deleted
+  const objects = await Data.getFilesByIds({ ids });
+  const files = Arrays.filterFiles(objects);
+  let cids = Arrays.mapToCids(files);
   let coverImageCids = [];
-  for (let file of files) {
-    if (file.data.coverImage) {
-      coverImageCids.push(file.data.coverImage.cid);
+  for (let obj of objects) {
+    if (obj.data.coverImage?.cid) {
+      coverImageCids.push(obj.data.coverImage.cid);
     }
   }
 

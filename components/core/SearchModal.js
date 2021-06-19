@@ -245,7 +245,7 @@ const FileEntry = ({ file }) => {
     <div css={STYLES_ENTRY}>
       <div css={STYLES_ENTRY_CONTAINER}>
         <div css={STYLES_ICON_SQUARE}>
-          <FileTypeIcon type={file.type} height="24px" />
+          <FileTypeIcon type={file.data.type} height="24px" />
         </div>
         <div css={STYLES_TEXT_ROWS}>
           <div css={STYLES_TITLE}>{file.data.name || file.filename}</div>
@@ -724,8 +724,8 @@ export class SearchModal extends React.Component {
         query: this.state.inputValue,
         type: this.state.typeFilter,
       });
-      this.setState({ unfilteredResults: response.data.results });
-      res = response.data.results;
+      this.setState({ unfilteredResults: response?.data?.results || [] });
+      res = response?.data?.results || [];
     } else {
       res = this.state.unfilteredResults;
     }

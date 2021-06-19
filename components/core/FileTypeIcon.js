@@ -1,24 +1,29 @@
 import * as React from "react";
 import * as SVG from "~/common/svg";
+import * as Validations from "~/common/validations";
 
 export function FileTypeIcon(props) {
-  if (props.type && props.type.startsWith("image/")) {
+  if (Validations.isImageType(props.type)) {
     return <SVG.Image {...props} />;
   }
 
-  if (props.type && props.type.startsWith("video/")) {
+  if (Validations.isLinkType(props.type)) {
+    return <SVG.Link {...props} />;
+  }
+
+  if (Validations.isVideoType(props.type)) {
     return <SVG.Video {...props} />;
   }
 
-  if (props.type && props.type.startsWith("audio/")) {
+  if (Validations.isAudioType(props.type)) {
     return <SVG.Sound {...props} />;
   }
 
-  if (props.type && props.type.startsWith("application/epub")) {
+  if (Validations.isEpubType(props.type)) {
     return <SVG.Book {...props} />;
   }
 
-  if (props.type && props.type.startsWith("application/pdf")) {
+  if (Validations.isPdfType(props.type)) {
     return <SVG.TextDocument {...props} />;
   }
 

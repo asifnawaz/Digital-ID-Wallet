@@ -570,7 +570,14 @@ class CarouselSidebar extends React.Component {
     const { coverImage, type, size } = file.data;
     const editingAllowed = this.props.isOwner && !this.props.isRepost && !this.props.external;
 
-    const isUnityGame = type === "application/unity";
+    const isUnityGame = Validations.isUnityType(type);
+    const isLink = Validations.isLinkType(type);
+
+    const showPreviewImageSection =
+      editingAllowed &&
+      type &&
+      !Validations.isLinkType(type) &&
+      !Validations.isPreviewableImage(type);
 
     const elements = [];
     if (editingAllowed && !isUnityGame) {
@@ -709,21 +716,23 @@ class CarouselSidebar extends React.Component {
         : null;
     }
 
-    actions.push(
-      <div key="download" css={STYLES_ACTION} onClick={this._handleDownload}>
-        {this.state.isDownloading ? (
-          <>
-            <LoaderSpinner css={STYLES_SPINNER} />
-            <span style={{ marginLeft: 16 }}>Downloading</span>
-          </>
-        ) : (
-          <>
-            <SVG.Download height="24px" />
-            <span style={{ marginLeft: 16 }}>Download</span>
-          </>
-        )}
-      </div>
-    );
+    if (!isLink) {
+      actions.push(
+        <div key="download" css={STYLES_ACTION} onClick={this._handleDownload}>
+          {this.state.isDownloading ? (
+            <>
+              <LoaderSpinner css={STYLES_SPINNER} />
+              <span style={{ marginLeft: 16 }}>Downloading</span>
+            </>
+          ) : (
+            <>
+              <SVG.Download height="24px" />
+              <span style={{ marginLeft: 16 }}>Download</span>
+            </>
+          )}
+        </div>
+      );
+    }
 
     if (!this.props.isOwner || this.props.isRepost) {
       actions.push(
@@ -759,7 +768,7 @@ class CarouselSidebar extends React.Component {
     }
 
     let uploadCoverImage;
-    if (editingAllowed && type && !Validations.isPreviewableImage(type)) {
+    if (showPreviewImageSection) {
       uploadCoverImage = (
         <div style={{ marginBottom: 48 }}>
           <System.P css={STYLES_SECTION_HEADER} style={{ margin: "48px 0px 8px 0px" }}>

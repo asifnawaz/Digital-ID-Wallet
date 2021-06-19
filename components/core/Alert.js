@@ -28,6 +28,19 @@ const STYLES_ALERT = `
     right: 0px;
     width: 100%;
   }
+
+  @keyframes fade-out {
+    0% {
+      opacity: 100%;
+    }
+    90% {
+      opacity: 100%;
+    }
+    100% {
+      opacity: 0%;
+    }
+  }
+  animation: fade-out 5000ms ease-in;
 `;
 
 const STYLES_WARNING = css`

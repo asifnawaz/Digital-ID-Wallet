@@ -11,7 +11,8 @@ const CONTAINS_UPPERCASE_REGEX = /[A-Z]/;
 const CONTAINS_LOWERCASE_REGEX = /[a-z]/;
 const CONTAINS_SYMBOL_REGEX = /[ !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/;
 const PIN_REGEX = /^[0-9]{6}$/;
-const URL_REGEX = /(http(s)?:\/\/.)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&\/=]*)/;
+// const URL_REGEX = /(http(s)?:\/\/.)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&\/=]*)/;
+const IFRAMELY_URL_REGEX = /^https?:\/\//i;
 
 // TODO(jim): Regex should cover some of this.
 const REJECT_LIST = [
@@ -203,8 +204,7 @@ export const link = (text) => {
     return false;
   }
 
-  console.log(URL_REGEX.test(text));
-  return URL_REGEX.test(text);
+  return IFRAMELY_URL_REGEX.test(text);
 };
 
 export const isPreviewableImage = (type = "") => {
@@ -213,34 +213,32 @@ export const isPreviewableImage = (type = "") => {
   return type.startsWith("image/");
 };
 
+export const isLinkType = (type = "") => {
+  return type === "link";
+};
+
 export const isImageType = (type = "") => {
-  if (type.startsWith("image/")) {
-    return true;
-  }
+  return type.startsWith("image/");
 };
 
 export const isAudioType = (type = "") => {
-  if (type.startsWith("audio/")) {
-    return true;
-  }
+  return type.startsWith("audio/");
 };
 
 export const isVideoType = (type = "") => {
-  if (type.startsWith("video/")) {
-    return true;
-  }
+  return type.startsWith("video/");
 };
 
 export const isPdfType = (type = "") => {
-  if (type.startsWith("application/pdf")) {
-    return true;
-  }
+  return type.startsWith("application/pdf");
 };
 
 export const isEpubType = (type = "") => {
-  if (type.startsWith("application/epub")) {
-    return true;
-  }
+  return type.startsWith("application/epub");
+};
+
+export const isUnityType = (type = "") => {
+  return type === "application/unity";
 };
 
 export const isFontFile = (fileName = "") => {

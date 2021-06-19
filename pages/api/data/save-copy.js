@@ -77,6 +77,11 @@ export default async (req, res) => {
   let copiedFiles = [];
 
   for (let file of filteredFiles) {
+    if (Validations.isLinkType(file.data.type)) {
+      copiedFiles.push(file);
+      continue;
+    }
+
     let response = await Utilities.addExistingCIDToData({
       buckets,
       key: bucketKey,

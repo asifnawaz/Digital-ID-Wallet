@@ -98,7 +98,7 @@ export default async (req, res) => {
 
   return res.status(200).send({
     decorator,
-    data: { added, skipped: files.length - added },
+    data: { added, skipped: files.length - added, files: filesToAddToSlate },
   });
 };
 

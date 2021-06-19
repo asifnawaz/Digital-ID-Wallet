@@ -214,7 +214,8 @@ export const saveCopy = async ({ files, slate }) => {
 
 export const download = async (file) => {
   Actions.createDownloadActivity({ file });
-  if (file.data.type === "application/unity") {
+  if (Validations.isLinkType(file.data.type)) return;
+  if (Validations.isUnityType(file.data.type)) {
     return await downloadZip(file);
   }
   let uri = Strings.getURLfromCID(file.cid);
@@ -274,17 +275,17 @@ const _nativeDownload = ({ url, onError }) => {
 };
 
 export const compressAndDownloadFiles = async ({ files, name = "slate.zip", resourceURI }) => {
-  Actions.createDownloadActivity({ files });
   const errorMessage = "Something went wrong with the download. Please try again";
   try {
-    if (!(files && files.length > 0)) {
+    if (!files || files.length == 0) {
       Events.dispatchMessage({ message: "No files in collection to download" });
       return;
     }
     Events.dispatchMessage({ message: "We're preparing your files to download", status: "INFO" });
     let downloadFiles = [];
     for (const file of files) {
-      if (file.type === "application/unity") {
+      if (Validations.isLinkType(file.data.type)) continue;
+      if (Validations.isUnityType(file.data.type)) {
         const { data } = await Actions.getZipFilePaths(file);
         const unityFiles = data.filesPaths.map((item) => ({
           url: item.replace(`/${file.id}/`, `${Strings.getURLfromCID(file.cid)}/`),
@@ -300,7 +301,14 @@ export const compressAndDownloadFiles = async ({ files, name = "slate.zip", reso
         url: Strings.getURLfromCID(file.cid),
       });
     }
+    if (downloadFiles.length == 0) {
+      Events.dispatchMessage({
+        message: "Links cannot be downloaded",
+      });
+      return;
+    }
 
+    Actions.createDownloadActivity({ files });
     const res = await Actions.createZipToken({ files: downloadFiles, resourceURI });
     const downloadLink = Actions.downloadZip({ token: res.data.token, name, resourceURI });
     await _nativeDownload({

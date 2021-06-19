@@ -52,21 +52,19 @@ const getCookie = (name) => {
   if (match) return match[2];
 };
 
-export const uploadLink = async ({ url, slate, context }) => {
-  //detect that a link is in teh clip board and ask "would you like to add ___ to slate"
-  const { status, data } = await Actions.mql(url);
-  console.log(status);
-  console.log(data);
-  if (status !== "success") return;
+export const uploadLink = async ({ url, slate, resources }) => {
+  const mql = await Actions.mql(url);
+  if (!mql) return;
+  if (mql.status !== "success") {
+    Events.dispatchMessage({ message: "Invalid link" });
+    return;
+  }
+  const { data } = mql;
   const bytes = new TextEncoder().encode(url);
-  console.log(bytes);
   const hash = await multihashing(bytes, "sha2-256");
-  console.log(hash);
   const cid = new CID(1, "dag-pb", hash);
-  console.log(cid.toString());
   const filename = Strings.createSlug(data.title);
-  console.log(filename);
-  //cover image, blurhash, tags
+
   const file = {
     filename,
     cid: cid.toString(),
@@ -93,16 +91,56 @@ export const uploadLink = async ({ url, slate, context }) => {
   };
   console.log(file);
   let createResponse = await Actions.createFile({ file, slate });
+  console.log(createResponse);
   if (Events.hasError(createResponse)) {
     return;
   }
-  console.log(createResponse.id);
-  Actions.uploadFromUrl({
-    url: data.screenshot.url,
-    targetId: createResponse.id,
-    updateType: "COVER_IMAGE_URL",
-    resourceURI: context.props.resources.upload,
-  });
+
+  const { added, skipped, files } = createResponse.data;
+  if (added) {
+    Events.dispatchMessage({ message: "Link added", status: "INFO" });
+  } else if (skipped) {
+    Events.dispatchMessage({
+      message: "You've already saved this link",
+    });
+    return;
+  }
+  const fileId = files && files.length ? files[0].id : null;
+  console.log(fileId);
+  if (!fileId) return;
+
+  const REQUEST_HEADERS = {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    Authorization: getCookie(Credentials.session.key),
+  };
+
+  try {
+    const response = await fetch(`${resources.upload}/api/data/url`, {
+      method: "POST",
+      headers: REQUEST_HEADERS,
+      credentials: "omit",
+      body: JSON.stringify({
+        data: {
+          url: data.screenshot.url,
+          targetId: fileId,
+          updateType: "COVER_IMAGE_URL",
+        },
+      }),
+    });
+    const json = await response.json();
+
+    return json;
+  } catch (e) {
+    console.log(e);
+  }
+
+  // Actions.uploadFromUrl({
+  //   url: data.screenshot.url,
+  //   targetId: createResponse.id,
+  //   updateType: "COVER_IMAGE_URL",
+  //   resourceURI: resources.upload,
+  // });
 };
 
 export const uploadFiles = async ({ context, files, slate, keys, numFailed = 0 }) => {
@@ -113,7 +151,7 @@ export const uploadFiles = async ({ context, files, slate, keys, numFailed = 0 }
 
   const resolvedFiles = [];
   for (let i = 0; i < files.length; i++) {
-    const currentFileKey = fileKey(file);
+    const currentFileKey = fileKey(files[i]);
     if (Store.checkCancelled(currentFileKey)) {
       continue;
     }
@@ -385,7 +423,7 @@ export const formatUploadedFiles = ({ files }) => {
     }
 
     toUpload.push(file);
-    fileLoading[`${file.lastModified}-${file.name}`] = {
+    fileLoading[fileKey(file)] = {
       name: file.name,
       loaded: 0,
       total: file.size,

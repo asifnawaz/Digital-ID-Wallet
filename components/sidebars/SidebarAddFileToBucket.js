@@ -105,9 +105,9 @@ export default class SidebarAddFileToBucket extends React.Component {
     this.props.onAction({ type: "REGISTER_FILE_CANCELLED", value: key }); //NOTE(martina): so that fileLoading registers it
   };
 
-  _handleUploadLink = async () => {
-    //validate link first obviously
-    await FileUtilities.uploadLink({ url: this.state.url });
+  _handleUploadLink = () => {
+    FileUtilities.uploadLink({ url: this.state.url, resources: this.props.resources });
+    this.props.onCancel();
   };
 
   render() {

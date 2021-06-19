@@ -7,8 +7,9 @@ import * as Strings from "~/common/strings";
 import UnityFrame from "~/components/core/UnityFrame";
 import FontFrame from "~/components/core/FontFrame/index.js";
 import MarkdownFrame from "~/components/core/MarkdownFrame";
-import { endsWithAny } from "~/common/utilities";
+import TwitterWidget from "~/components/core/links/TwitterWidget";
 
+import { endsWithAny } from "~/common/utilities";
 import { css } from "@emotion/react";
 
 const STYLES_FAILURE = css`
@@ -93,7 +94,10 @@ export default class SlateMediaObject extends React.Component {
 
     let element = <div css={STYLES_FAILURE}>No Preview</div>;
 
-    if (type === "link") {
+    if (Validations.isLinkType(type)) {
+      if (file.data.link.url.includes("twitter.com")) {
+        return <TwitterWidget />;
+      }
       return <iframe src={file.data.link.url} css={STYLES_IFRAME} />;
     }
 

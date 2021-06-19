@@ -385,6 +385,7 @@ export default class ApplicationPage extends React.Component {
   };
 
   _withAuthenticationBehavior = (authenticate) => async (state, newAccount) => {
+    console.log("inside with authentication behavior");
     let response = await authenticate(state);
     if (Events.hasError(response)) {
       return response;
@@ -397,7 +398,9 @@ export default class ApplicationPage extends React.Component {
       return viewer;
     }
 
-    this.setState({ viewer });
+    this.setState({ viewer }, () => {
+      console.log("set viewer to", this.state.viewer);
+    });
     await this._handleSetupWebsocket();
 
     let unseenAnnouncements = [];
@@ -432,7 +435,7 @@ export default class ApplicationPage extends React.Component {
     // if (!redirected) {
     //   this._handleAction({ type: "NAVIGATE", value: "NAV_DATA" });
     // }
-    window.location.replace("/_/activity");
+    this._handleNavigateTo({ href: "/_/activity", redirect: true });
 
     return response;
   };
