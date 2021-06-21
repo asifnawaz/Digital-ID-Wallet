@@ -14,6 +14,18 @@ const REQUEST_HEADERS = {
   "Content-Type": "application/json",
 };
 
+const API_HEADERS = {
+  Accept: "application/json",
+  "Content-Type": "application/json",
+  Authorization: "Basic SLA42887290-7073-4f7c-961d-db84aea29b41TE",
+};
+
+const API_OPTIONS = {
+  method: "POST",
+  headers: API_HEADERS,
+  credentials: "include",
+};
+
 const DEFAULT_OPTIONS = {
   method: "POST",
   headers: REQUEST_HEADERS,
@@ -37,9 +49,20 @@ const returnJSON = async (route, options) => {
   }
 };
 
+export const getEmbed = async (url) => {
+  const uri = encodeURIComponent(url);
+  console.log(uri);
+  return await returnJSON(
+    `https://cdn.iframe.ly/api/oembed?url=${uri}&api_key=bd2aa436ece01e67ede2f4`,
+    {
+      ...CORS_OPTIONS,
+    }
+  );
+};
+
 export const uploadFromUrl = async (data) => {
   return await returnJSON(`${data.resourceURI}/api/data/url`, {
-    ...DEFAULT_OPTIONS,
+    ...CORS_OPTIONS,
     body: JSON.stringify({ data }),
   });
 };

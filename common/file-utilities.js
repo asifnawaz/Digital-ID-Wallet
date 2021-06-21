@@ -75,17 +75,19 @@ export const uploadLink = async ({ url, slate, resources }) => {
       author: data.author,
       source: data.publisher,
       body: data.description,
-      coverImage: {
-        data: {
-          type: "image/png",
-          size: data.screenshot.size,
-          url: data.screenshot.url,
-        },
-      },
+      coverImage: data.screenshot
+        ? {
+            data: {
+              type: "image/png",
+              size: data.screenshot.size,
+              url: data.screenshot.url,
+            },
+          }
+        : null,
       link: {
         url: data.url,
-        image: data.image.url,
-        logo: data.logo.url,
+        image: data.image?.url,
+        logo: data.logo?.url,
       },
     },
   };
@@ -115,25 +117,25 @@ export const uploadLink = async ({ url, slate, resources }) => {
     Authorization: getCookie(Credentials.session.key),
   };
 
-  try {
-    const response = await fetch(`${resources.upload}/api/data/url`, {
-      method: "POST",
-      headers: REQUEST_HEADERS,
-      credentials: "omit",
-      body: JSON.stringify({
-        data: {
-          url: data.screenshot.url,
-          targetId: fileId,
-          updateType: "COVER_IMAGE_URL",
-        },
-      }),
-    });
-    const json = await response.json();
+  // try {
+  //   const response = await fetch(`${resources.upload}/api/data/url`, {
+  //     method: "POST",
+  //     headers: REQUEST_HEADERS,
+  //     credentials: "omit",
+  //     body: JSON.stringify({
+  //       data: {
+  //         url: data.screenshot.url,
+  //         targetId: fileId,
+  //         updateType: "COVER_IMAGE_URL",
+  //       },
+  //     }),
+  //   });
+  //   const json = await response.json();
 
-    return json;
-  } catch (e) {
-    console.log(e);
-  }
+  //   return json;
+  // } catch (e) {
+  //   console.log(e);
+  // }
 
   // Actions.uploadFromUrl({
   //   url: data.screenshot.url,

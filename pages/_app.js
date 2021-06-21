@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider>
       <React.Fragment>
+        {/* <script src="//cdn.iframe.ly/embed.js" async></script> */}
         <Global styles={injectGlobalStyles()} />
         <Global styles={injectCodeBlockStyles()} />
         <Component {...pageProps} />

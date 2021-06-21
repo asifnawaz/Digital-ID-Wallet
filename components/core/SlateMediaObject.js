@@ -3,11 +3,11 @@ import * as Constants from "~/common/constants";
 import * as Validations from "~/common/validations";
 import * as Events from "~/common/custom-events";
 import * as Strings from "~/common/strings";
+import * as Actions from "~/common/actions";
 
 import UnityFrame from "~/components/core/UnityFrame";
 import FontFrame from "~/components/core/FontFrame/index.js";
 import MarkdownFrame from "~/components/core/MarkdownFrame";
-import TwitterWidget from "~/components/core/links/TwitterWidget";
 
 import { endsWithAny } from "~/common/utilities";
 import { css } from "@emotion/react";
@@ -77,28 +77,73 @@ export default class SlateMediaObject extends React.Component {
   };
 
   componentDidMount() {
+    const file = this.props.file;
     if (this.props.isMobile) {
-      const file = this.props.file;
       if (file.data.type && file.data.type.startsWith("application/pdf")) {
         const url = Strings.getURLfromCID(file.cid);
         this.openLink(url);
       }
     }
+    // if (Validations.isLinkType(file.data.type)) {
+    //   console.log("is link type");
+    //   this.fetchEmbed();
+    // }
+
+    // window.iframely && iframely.load();
   }
+
+  // fetchEmbed = async () => {
+  //   const url = this.props.file.data.link.url;
+  //   const response = await Actions.getEmbed(url);
+  //   console.log(response);
+  // };
 
   render() {
     const { file, isMobile } = this.props;
-    const url = Strings.getURLfromCID(file.cid);
     const type = file.data.type || "";
+    const isLink = Validations.isLinkType(type);
+    const url = isLink ? file.data.link.url : Strings.getURLfromCID(file.cid);
     const playType = typeMap[type] ? typeMap[type] : type;
+    console.log(file.data.link.html);
 
     let element = <div css={STYLES_FAILURE}>No Preview</div>;
 
-    if (Validations.isLinkType(type)) {
-      if (file.data.link.url.includes("twitter.com")) {
-        return <TwitterWidget />;
+    if (isLink) {
+      // return <iframe src={file.data.link.url} css={STYLES_IFRAME} />;
+      if (file.data.link.html) {
+        return (
+          <>
+            <script src="//cdn.iframe.ly/embed.js" async></script>
+            <div
+              style={{ width: 400, height: 400 }}
+              dangerouslySetInnerHTML={{
+                __html: file.data.link.html,
+              }}
+            />
+          </>
+          // <div className="iframely-embed">
+          //   <div className="iframely-responsive">
+          //     <a data-iframely-url href={url} />
+          //   </div>
+          // </div>
+
+          // <>
+          //   <div className="iframely-embed">
+          //     <div className="iframely-responsive" style={{ width: 400, height: 400 }}>
+          //       <a
+          //         // href="https://github.com/kushtej/Assist"
+          //         // data-iframely-url="//cdn.iframe.ly/HxgQem5"
+          //         data-iframely-url={`//cdn.iframe.ly/api/oembed?url=${encodeURIComponent(
+          //           url
+          //         )}&api_key=bd2aa436ece01e67ede2f4`}
+          //       ></a>
+          //     </div>
+          //   </div>
+          //   <script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script>
+          // </>
+        );
       }
-      return <iframe src={file.data.link.url} css={STYLES_IFRAME} />;
+      return <iframe src={url} css={STYLES_IFRAME} />;
     }
 
     if (type.startsWith("application/pdf")) {

@@ -49,3 +49,6 @@ export const TWITTER_CALLBACK = process.env.TWITTER_CALLBACK;
 //NOTE(toast): Sendgrid
 export const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 export const SENDGRID_WEBHOOK_KEY = process.env.SENDGRID_WEBHOOK_KEY;
+
+//NOTE(martina): iFramely
+export const IFRAMELY_API_KEY = process.env.IFRAMELY_API_KEY;

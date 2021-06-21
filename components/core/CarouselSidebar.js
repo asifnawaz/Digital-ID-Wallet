@@ -280,10 +280,10 @@ export const FileTypeDefaultPreview = (props) => {
 
 class CarouselSidebar extends React.Component {
   state = {
-    name: this.props.file.data.name || this.props.file.filename,
-    body: this.props.file.data.body,
-    source: this.props.file.data.source,
-    author: this.props.file.data.author,
+    name: this.props.file.data.name || this.props.file.filename || "",
+    body: this.props.file.data.body || "",
+    source: this.props.file.data.source || "",
+    author: this.props.file.data.author || "",
     tags: this.props.file.data.tags || [],
     suggestions: this.props.viewer?.tags || [],
     selected: {},
@@ -846,7 +846,7 @@ class CarouselSidebar extends React.Component {
           {!isPublic && (
             <Input
               full
-              value={Strings.getURLfromCID(file.cid)}
+              value={isLink ? file.data.link.url : Strings.getURLfromCID(file.cid)}
               name="copyLink"
               readOnly
               copyable

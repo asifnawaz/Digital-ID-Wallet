@@ -112,6 +112,7 @@ export default class ApplicationPage extends React.Component {
   };
 
   async componentDidMount() {
+    // window.iframely && iframely.load();
     this._handleWindowResize();
     if (mounted) {
       return false;

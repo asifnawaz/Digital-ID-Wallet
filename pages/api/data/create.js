@@ -4,6 +4,10 @@ import * as ViewerManager from "~/node_common/managers/viewer";
 import * as SearchManager from "~/node_common/managers/search";
 import * as ArrayUtilities from "~/node_common/array-utilities";
 import * as Monitor from "~/node_common/monitor";
+import * as Validations from "~/common/validations";
+import * as Environment from "~/node_common/environment";
+
+import "isomorphic-fetch";
 
 export default async (req, res) => {
   const id = Utilities.getIdFromCookie(req);
@@ -42,6 +46,15 @@ export default async (req, res) => {
     files = req.body.data.files;
   } else {
     return res.status(400).send({ decorator: "SERVER_CREATE_FILE_NO_FILE_PROVIDED", error: true });
+  }
+
+  for (let file of files) {
+    if (Validations.isLinkType(file.data.type)) {
+      const embedHtml = await fetchEmbed(file.data.link.url);
+      if (embedHtml) {
+        file.data.link.html = embedHtml;
+      }
+    }
   }
 
   if (slate?.isPublic) {
@@ -100,6 +113,23 @@ export default async (req, res) => {
     decorator,
     data: { added, skipped: files.length - added, files: filesToAddToSlate },
   });
+};
+
+const fetchEmbed = async (url) => {
+  try {
+    const request = await fetch(
+      `https://iframe.ly/api/oembed?url=${encodeURIComponent(url)}&api_key=${
+        Environment.IFRAMELY_API_KEY
+      }&iframe=1&omit_script=1`,
+      {
+        method: "GET",
+      }
+    );
+    const data = await request.json();
+    return data?.html;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 const addToSlate = async ({ slate, files, user }) => {
