@@ -47,14 +47,14 @@ export default class SidebarCreateWalletAddress extends React.Component {
   render() {
     return (
       <div>
-        <System.P
+        <System.P1
           style={{
             fontFamily: Constants.font.semiBold,
             fontSize: Constants.typescale.lvl3,
           }}
         >
           Create a new address
-        </System.P>
+        </System.P1>
 
         <System.Input
           containerStyle={{ marginTop: 24 }}

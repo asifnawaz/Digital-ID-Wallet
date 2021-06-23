@@ -94,7 +94,7 @@ export default class SidebarEditTags extends React.Component {
 
     return (
       <div style={{ marginBottom: 64 }}>
-        <System.P
+        <System.P1
           style={{
             fontFamily: Constants.font.semiBold,
             fontSize: Constants.typescale.lvl2,
@@ -102,10 +102,10 @@ export default class SidebarEditTags extends React.Component {
           }}
         >
           Edit tags
-        </System.P>
+        </System.P1>
 
         <div css={STYLES_GROUPING}>
-          <System.P
+          <System.P1
             style={{
               fontFamily: Constants.font.semiBold,
               fontSize: Constants.typescale.lvl1,
@@ -113,8 +113,8 @@ export default class SidebarEditTags extends React.Component {
             }}
           >
             Tags
-          </System.P>
-          <System.P
+          </System.P1>
+          <System.P1
             style={{
               fontFamily: Constants.font.text,
               fontSize: Constants.typescale.lvl0,
@@ -123,7 +123,7 @@ export default class SidebarEditTags extends React.Component {
             }}
           >
             Add or remove common tags on your files
-          </System.P>
+          </System.P1>
           <Tag
             tags={this.state.tags}
             suggestions={this.state.suggestions}

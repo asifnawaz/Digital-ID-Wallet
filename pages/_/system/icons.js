@@ -52,14 +52,14 @@ export default class SystemPageIcons extends React.Component {
         </System.H1>
         <br />
         <br />
-        <System.P>Every icon used in the Filecoin Client.</System.P>
+        <System.P1>Every icon used in the Filecoin Client.</System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>Import the SVG Components.</System.P>
+        <System.P1>Import the SVG Components.</System.P1>
         <br />
         <br />
         <CodeBlock>{`import { SVG } from "slate-react-system";`}</CodeBlock>
@@ -68,7 +68,7 @@ export default class SystemPageIcons extends React.Component {
         <System.H2>Usage</System.H2>
         <hr />
         <br />
-        <System.P>Declare the SVG icons.</System.P>
+        <System.P1>Declare the SVG icons.</System.P1>
         <br />
         <CodeBlock>
           {`<SVG.Home height='88px' />

@@ -123,7 +123,7 @@ export default class SidebarAddFileToBucket extends React.Component {
     }
     return (
       <React.Fragment>
-        <System.P
+        <System.P1
           style={{
             fontFamily: Constants.font.semiBold,
             fontSize: Constants.typescale.lvl3,
@@ -133,7 +133,7 @@ export default class SidebarAddFileToBucket extends React.Component {
           {this.props.fileLoading && Object.keys(this.props.fileLoading).length
             ? "Upload progress"
             : "Upload data"}
-        </System.P>
+        </System.P1>
 
         <input
           css={STYLES_FILE_HIDDEN}
@@ -147,7 +147,7 @@ export default class SidebarAddFileToBucket extends React.Component {
           <React.Fragment>
             <FileTypeGroup style={{ margin: "64px 0px" }} />
 
-            <System.P>
+            <System.P1>
               Click below or drop a file anywhere on the page to upload a file
               {this.props.data?.slatename || this.props.data?.data.name ? (
                 <span>
@@ -158,7 +158,7 @@ export default class SidebarAddFileToBucket extends React.Component {
                 ""
               )}
               .
-            </System.P>
+            </System.P1>
 
             <SidebarWarningMessage />
 

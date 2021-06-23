@@ -45,16 +45,16 @@ export default class SystemPageTabs extends React.Component {
         </System.H1>
         <br />
         <br />
-        <System.P>
+        <System.P1>
           The TabGroup component is used to allow the users to switch between views.
-        </System.P>
+        </System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>Import React and the TabGroup Component.</System.P>
+        <System.P1>Import React and the TabGroup Component.</System.P1>
         <br />
         <br />
         <CodeBlock>
@@ -66,7 +66,7 @@ import { TabGroup } from "slate-react-system";`}
         <System.H2>Usage</System.H2>
         <hr />
         <br />
-        <System.P>Define the tab group values and labels.</System.P>
+        <System.P1>Define the tab group values and labels.</System.P1>
         <br />
         <CodeBlock>
           {`const TAB_GROUP_TWO = [
@@ -81,7 +81,7 @@ const TAB_GROUP_THREE = [
 ];`}
         </CodeBlock>
         <br />
-        <System.P>Declare the TabGroup component.</System.P>
+        <System.P1>Declare the TabGroup component.</System.P1>
         <br />
         <CodeBlock>
           {`class ExampleOne extends React.Component {

@@ -192,9 +192,9 @@ export class SignIn extends React.Component {
           <div css={STYLES_POPOVER} key={this.state.scene}>
             <Logo height="36px" style={{ display: "block", margin: "56px auto 0px auto" }} />
 
-            <System.P style={{ margin: "56px 0", textAlign: "center" }}>
+            <System.P1 style={{ margin: "56px 0", textAlign: "center" }}>
               An open-source file sharing network for research and collaboration
-            </System.P>
+            </System.P1>
 
             <System.ButtonPrimary
               full
@@ -241,7 +241,7 @@ export class SignIn extends React.Component {
               <Symbol height="36px" />
             </div>
 
-            <System.P
+            <System.P1
               style={{
                 marginTop: 56,
                 textAlign: "center",
@@ -249,7 +249,7 @@ export class SignIn extends React.Component {
               }}
             >
               Create your account
-            </System.P>
+            </System.P1>
 
             <System.Input
               autoFocus
@@ -343,7 +343,7 @@ export class SignIn extends React.Component {
             <Symbol height="36px" />
           </div>
 
-          <System.P
+          <System.P1
             style={{
               marginTop: 56,
               textAlign: "center",
@@ -351,7 +351,7 @@ export class SignIn extends React.Component {
             }}
           >
             Welcome back
-          </System.P>
+          </System.P1>
 
           <System.Input
             autoFocus

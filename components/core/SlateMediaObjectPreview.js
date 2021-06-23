@@ -114,6 +114,10 @@ export default class SlateMediaObjectPreview extends React.Component {
       url = coverImage.data?.url || Strings.getURLfromCID(coverImage.cid);
     }
 
+    // if (Validations.isLinkType(type)) {
+    //   url = file.data.link.image;
+    // }
+
     if (url) {
       const blurhash =
         file.data.blurhash && isBlurhashValid(file.data?.blurhash)

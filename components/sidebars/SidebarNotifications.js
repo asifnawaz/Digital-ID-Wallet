@@ -36,14 +36,14 @@ export default class SidebarNotifications extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <System.P
+        <System.P1
           style={{
             fontFamily: Constants.font.semiBold,
             fontSize: Constants.typescale.lvl3,
           }}
         >
           Notifications
-        </System.P>
+        </System.P1>
         {this.props.viewer.notifications.map((n) => {
           return (
             <div css={STYLES_NOTIFICATION} key={n.id}>

@@ -179,7 +179,7 @@ export default function ResetPassword({
       <button css={STYLES_BACK_BUTTON} type="button" onClick={goBack}>
         <span>
           <SVG.RightArrow height="16px" style={{ transform: "rotate(180deg)" }} />
-          <P>Back</P>
+          <P1>Back</P1>
         </span>
       </button>
     </SignUpPopover>

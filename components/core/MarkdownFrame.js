@@ -5,7 +5,7 @@ import * as Strings from "~/common/strings";
 
 import { css } from "@emotion/react";
 import { Markdown } from "~/components/system/components/Markdown";
-import { H1, H2, H3, H4, P, UL, OL, LI, Link } from "~/components/system/components/Typography";
+import { H1, H2, H3, H4, P1, UL, OL, LI, A } from "~/components/system/components/Typography";
 
 const STYLES_ASSET = (theme) => css`
   padding: 120px calc(32px + 16px + 8px);
@@ -128,7 +128,7 @@ export default function MarkdownFrame({ url, date }) {
   const readTime = Math.round(content.split(" ").length / 150);
 
   const remarkReactComponents = {
-    p: (props) => <P {...props} />,
+    p: (props) => <P1 {...props} />,
     h1: (props) => <H1 {...props} />,
     h2: (props) => <H2 {...props} />,
     h3: (props) => <H3 {...props} />,
@@ -138,7 +138,7 @@ export default function MarkdownFrame({ url, date }) {
     ol: OL,
     ul: UL,
     li: LI,
-    a: (props) => <Link {...props} dark={true} target="_blank" />,
+    a: (props) => <A {...props} dark={true} target="_blank" />,
     img: (props) => <img css={STYLES_IMG} {...props} />,
   };
 

@@ -69,7 +69,7 @@ export default class SidebarCreateSlate extends React.Component {
   render() {
     return (
       <div>
-        <System.P
+        <System.P1
           style={{
             fontFamily: Constants.font.semiBold,
             fontSize: Constants.typescale.lvl3,
@@ -77,23 +77,23 @@ export default class SidebarCreateSlate extends React.Component {
           }}
         >
           Talk to us
-        </System.P>
+        </System.P1>
 
         <div css={STYLES_GROUPING} style={{ marginTop: 24 }}>
-          <System.P
+          <System.P1
             css={STYLES_TEXT}
             style={{ color: Constants.system.brand, cursor: "pointer" }}
             onClick={() => this.props.onAction({ type: "SIDEBAR", value: "SIDEBAR_FAQ" })}
           >
             Check out our FAQ here!
-          </System.P>
+          </System.P1>
         </div>
 
         <div css={STYLES_GROUPING}>
-          <System.P css={STYLES_HEADER}>Your Info</System.P>
-          <System.P css={STYLES_TEXT} style={{ marginTop: 12 }}>
+          <System.P1 css={STYLES_HEADER}>Your Info</System.P1>
+          <System.P1 css={STYLES_TEXT} style={{ marginTop: 12 }}>
             Let us know how we can reach you!
-          </System.P>
+          </System.P1>
           <System.Input
             name="name"
             type="text"
@@ -125,7 +125,7 @@ export default class SidebarCreateSlate extends React.Component {
         </div>
 
         <div css={STYLES_GROUPING}>
-          <System.P css={STYLES_HEADER}>Message</System.P>
+          <System.P1 css={STYLES_HEADER}>Message</System.P1>
 
           <System.Textarea
             style={{ marginTop: 16 }}

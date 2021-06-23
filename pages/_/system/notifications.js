@@ -34,16 +34,18 @@ export default class SystemPageNotifications extends React.Component {
         </System.H1>
         <br />
         <br />
-        <System.P>The Notification component is used to alert a user of new information.</System.P>
+        <System.P1>
+          The Notification component is used to alert a user of new information.
+        </System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>
+        <System.P1>
           Import React and the Notification Component, as well as the dispatchCustomEvent function.
-        </System.P>
+        </System.P1>
         <br />
         <CodeBlock>
           {`import * as React from "react";
@@ -55,15 +57,15 @@ import { GlobalNotification, dispatchCustomEvent } from "slate-react-system";`}
         <System.H2>Usage</System.H2>
         <hr />
         <br />
-        <System.P>
+        <System.P1>
           Declare the component at the root level of your document (e.g. in index.js or App.js) so
           it is accessible throughout and will not get buried in the DOM tree.
-        </System.P>
+        </System.P1>
         <br />
-        <System.P>
+        <System.P1>
           Use <System.CodeText>style</System.CodeText> to specify placement of the fixed positioning
           notification list. Default is bottom right.
-        </System.P>
+        </System.P1>
         <br />
         <CodeBlock>
           {`class App extends React.Component {
@@ -113,16 +115,16 @@ import { GlobalNotification, dispatchCustomEvent } from "slate-react-system";`}
           Click to clear notifications
         </System.ButtonPrimary>
         <br />
-        <System.P>
+        <System.P1>
           A notification will only appear once you trigger it by creating a custom event with the
           title <System.CodeText>"create-notification"</System.CodeText>. It can be removed with a
           custom event entitled <System.CodeText>"delete-notification"</System.CodeText>.
-        </System.P>
+        </System.P1>
         <br />
-        <System.P>
+        <System.P1>
           Multiple stacked notifications can be created using a single Notification component.{" "}
           <strong>Each co-existing notification must have a unique id.</strong>
-        </System.P>
+        </System.P1>
         <br />
         <CodeBlock>
           {`class ExampleOne extends React.Component {
@@ -198,11 +200,11 @@ import { GlobalNotification, dispatchCustomEvent } from "slate-react-system";`}
           Click to clear notifications
         </System.ButtonPrimary>
         <br />
-        <System.P>
+        <System.P1>
           You can declare the Notification component with a{" "}
           <System.CodeText>timeout</System.CodeText> (in milliseconds) after which it will
           automatically disappear.
-        </System.P>
+        </System.P1>
         <br />
         <CodeBlock>
           {`class ExampleTwo extends React.Component {
@@ -302,11 +304,11 @@ import { GlobalNotification, dispatchCustomEvent } from "slate-react-system";`}
         </System.ButtonPrimary>
         <br />
         <br />
-        <System.P>
+        <System.P1>
           Declare the Notification component with a <System.CodeText>status</System.CodeText> to
           style it accordingly. This is overridden if <System.CodeText>dark</System.CodeText> is set
           to true.
-        </System.P>
+        </System.P1>
         <br />
         <CodeBlock>
           {`class ExampleThree extends React.Component {
@@ -420,10 +422,10 @@ import { GlobalNotification, dispatchCustomEvent } from "slate-react-system";`}
         </System.H2>
         <hr />
         <br />
-        <System.P>
+        <System.P1>
           Note that these properties are passed through a custom event rather than as react
           properties.
-        </System.P>
+        </System.P1>
         <br />
         <Group title="Notifications">
           <System.Table

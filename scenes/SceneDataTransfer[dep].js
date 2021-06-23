@@ -70,7 +70,7 @@ export default class SceneDataTransfer extends React.Component {
 
         {this.state.sub_navigation === "1" ? (
           <Section onAction={this.props.onAction} title="Current transfers">
-            <System.P style={{ padding: 24 }}>There are no transfers</System.P>
+            <System.P1 style={{ padding: 24 }}>There are no transfers</System.P1>
           </Section>
         ) : null}
       </ScenePage>

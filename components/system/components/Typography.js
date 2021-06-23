@@ -1,40 +1,9 @@
 import * as React from "react";
 import * as Constants from "~/common/constants";
-import * as Actions from "~/common/actions";
+import * as Styles from "~/common/styles";
 import * as Strings from "~/common/strings";
 
 import { css } from "@emotion/react";
-
-const LINK_STYLES = `
-  font-family: ${Constants.font.text};
-  font-weight: 400;
-  text-decoration: none;
-  color: ${Constants.system.moonstone};
-  cursor: pointer;
-  transition: 200ms ease color;
-
-  :hover {
-    color: ${Constants.system.slate};
-  }
-`;
-
-const STYLES_LINK = css`
-  ${LINK_STYLES}
-`;
-
-const STYLES_LINK_DARK = css`
-  color: ${Constants.system.darkGray};
-
-  :hover {
-    color: ${Constants.system.white};
-  }
-`;
-
-const ANCHOR = `
-  a {
-    ${LINK_STYLES}
-  }
-`;
 
 const onDeepLink = async (object) => {
   let slug = object.deeplink
@@ -51,13 +20,13 @@ const onDeepLink = async (object) => {
 const outboundRE = /^[a-z]+:/i;
 const isExternal = (path) => outboundRE.test(path);
 
-export const Link = ({ href, children, dark }) => {
+export const A = ({ href, children, dark }) => {
   // setup default linkProps
   const linkProps = {
     href,
     target: isExternal(href) ? "_blank" : "_self",
     rel: isExternal(href) ? "external nofollow" : "",
-    css: dark ? STYLES_LINK_DARK : STYLES_LINK,
+    css: Styles.LINK,
     children,
   };
 
@@ -86,148 +55,95 @@ export const Link = ({ href, children, dark }) => {
   return <a {...linkProps} />;
 };
 
-const STYLES_H1 = css`
-  box-sizing: border-box;
-  font-size: ${Constants.typescale.lvl4};
-  line-height: 1.1;
-  font-family: ${Constants.font.semiBold};
-  font-weight: 400;
-  color: inherit;
-  text-decoration: none;
-  display: block;
-  overflow-wrap: break-word;
+// const STYLES_H1 = css`
+//   box-sizing: border-box;
+//   font-size: ${Constants.typescale.lvl4};
+//   line-height: 1.1;
+//   font-family: ${Constants.font.semiBold};
+//   font-weight: 400;
+//   color: inherit;
+//   text-decoration: none;
+//   display: block;
+//   overflow-wrap: break-word;
 
-  :hover {
-    color: inherit;
-  }
+//   :hover {
+//     color: inherit;
+//   }
 
-  :visited {
-    color: inherit;
-  }
+//   :visited {
+//     color: inherit;
+//   }
 
-  strong {
-    font-family: ${Constants.font.semiBold};
-    font-weight: 400;
-  }
+//   strong {
+//     font-family: ${Constants.font.semiBold};
+//     font-weight: 400;
+//   }
 
-  ${ANCHOR}
-`;
+//   ${ANCHOR}
+// `;
 
 export const H1 = (props) => {
-  return <h1 css={STYLES_H1} {...props} />;
+  return <h1 {...props} css={[Styles.H1, props?.css]} />;
 };
-
-const STYLES_H2 = css`
-  box-sizing: border-box;
-  font-size: ${Constants.typescale.lvl3};
-  line-height: 1.1;
-  font-family: ${Constants.font.medium};
-  font-weight: 400;
-  overflow-wrap: break-word;
-  color: inherit;
-  text-decoration: none;
-  display: block;
-
-  :hover {
-    color: inherit;
-  }
-
-  :visited {
-    color: inherit;
-  }
-
-  strong {
-    font-family: ${Constants.font.semiBold};
-    font-weight: 400;
-  }
-
-  ${ANCHOR}
-`;
 
 export const H2 = (props) => {
-  return <h2 css={STYLES_H2} {...props} />;
+  return <h2 {...props} css={[Styles.H2, props?.css]} />;
 };
-
-const STYLES_H3 = css`
-  box-sizing: border-box;
-  font-size: ${Constants.typescale.lvl2};
-  line-height: 1.1;
-  font-family: ${Constants.font.medium};
-  font-weight: 400;
-  overflow-wrap: break-word;
-  color: inherit;
-  text-decoration: none;
-  display: block;
-
-  :hover {
-    color: inherit;
-  }
-
-  :visited {
-    color: inherit;
-  }
-
-  strong {
-    font-family: ${Constants.font.semiBold};
-    font-weight: 400;
-  }
-
-  ${ANCHOR}
-`;
 
 export const H3 = (props) => {
-  return <h3 css={STYLES_H3} {...props} />;
+  return <h3 {...props} css={[Styles.H3, props?.css]} />;
 };
-
-const STYLES_H4 = css`
-  box-sizing: border-box;
-  font-size: ${Constants.typescale.lvl1};
-  line-height: 1.1;
-  font-family: ${Constants.font.medium};
-  font-weight: 400;
-  overflow-wrap: break-word;
-  color: inherit;
-  text-decoration: none;
-  display: block;
-
-  :hover {
-    color: inherit;
-  }
-
-  :visited {
-    color: inherit;
-  }
-
-  strong {
-    font-family: ${Constants.font.semiBold};
-    font-weight: 400;
-  }
-
-  ${ANCHOR}
-`;
 
 export const H4 = (props) => {
-  return <h4 css={STYLES_H4} {...props} />;
+  return <h4 {...props} css={[Styles.H4, props?.css]} />;
 };
 
-const STYLES_P = css`
-  box-sizing: border-box;
-  font-family: ${Constants.font.text};
-  font-size: ${Constants.typescale.lvl1};
-  line-height: 1.5;
-  overflow-wrap: break-word;
+export const H5 = (props) => {
+  return <h5 {...props} css={[Styles.H5, props?.css]} />;
+};
 
-  strong,
-  b {
-    font-family: ${Constants.font.semiBold};
-    font-weight: 400;
-  }
+// const STYLES_P = css`
+//   box-sizing: border-box;
+//   font-family: ${Constants.font.text};
+//   font-size: ${Constants.typescale.lvl1};
+//   line-height: 1.5;
+//   overflow-wrap: break-word;
 
-  ${ANCHOR}
-`;
+//   strong,
+//   b {
+//     font-family: ${Constants.font.semiBold};
+//     font-weight: 400;
+//   }
 
-export const P = (props) => {
-  return <div css={STYLES_P} {...props} />;
+//   ${ANCHOR}
+// `;
+
+export const P1 = (props) => {
+  return <p1 {...props} css={[Styles.P1, props?.css]} />;
+};
+
+export const P2 = (props) => {
+  return <p2 {...props} css={[Styles.P2, props?.css]} />;
+};
+
+export const P3 = (props) => {
+  return <p3 {...props} css={[Styles.P3, props?.css]} />;
+};
+
+export const C1 = (props) => {
+  return <p1 {...props} css={[Styles.C1, props?.css]} />;
+};
+
+export const C2 = (props) => {
+  return <p2 {...props} css={[Styles.C2, props?.css]} />;
+};
+
+export const C3 = (props) => {
+  return <p3 {...props} css={[Styles.C3, props?.css]} />;
+};
+
+export const B1 = (props) => {
+  return <p3 {...props} css={[Styles.B1, props?.css]} />;
 };
 
 const STYLES_UL = css`
@@ -256,8 +172,6 @@ const STYLES_LI = css`
     font-family: ${Constants.font.semiBold};
     font-weight: 400;
   }
-
-  ${ANCHOR}
 `;
 
 export const LI = (props) => {

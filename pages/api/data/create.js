@@ -4,10 +4,6 @@ import * as ViewerManager from "~/node_common/managers/viewer";
 import * as SearchManager from "~/node_common/managers/search";
 import * as ArrayUtilities from "~/node_common/array-utilities";
 import * as Monitor from "~/node_common/monitor";
-import * as Validations from "~/common/validations";
-import * as Environment from "~/node_common/environment";
-
-import "isomorphic-fetch";
 
 export default async (req, res) => {
   const id = Utilities.getIdFromCookie(req);
@@ -48,15 +44,6 @@ export default async (req, res) => {
     return res.status(400).send({ decorator: "SERVER_CREATE_FILE_NO_FILE_PROVIDED", error: true });
   }
 
-  for (let file of files) {
-    if (Validations.isLinkType(file.data.type)) {
-      const embedHtml = await fetchEmbed(file.data.link.url);
-      if (embedHtml) {
-        file.data.link.html = embedHtml;
-      }
-    }
-  }
-
   if (slate?.isPublic) {
     files = files.map((file) => {
       return { ...file, isPublic: true };
@@ -89,7 +76,7 @@ export default async (req, res) => {
 
   let filesToAddToSlate = createdFiles.concat(duplicateFiles); //NOTE(martina): files that are already owned by the user are included in case they aren't yet in that specific slate
   if (slate && filesToAddToSlate.length) {
-    const { decorator: returnedDecorator, added: addedToSlate } = await addToSlate({
+    const { decorator: returnedDecorator, added: addedToSlate } = await Utilities.addToSlate({
       slate,
       files: filesToAddToSlate,
       user,
@@ -111,45 +98,6 @@ export default async (req, res) => {
 
   return res.status(200).send({
     decorator,
-    data: { added, skipped: files.length - added, files: filesToAddToSlate },
+    data: { added, skipped: files.length - added },
   });
-};
-
-const fetchEmbed = async (url) => {
-  try {
-    const request = await fetch(
-      `https://iframe.ly/api/oembed?url=${encodeURIComponent(url)}&api_key=${
-        Environment.IFRAMELY_API_KEY
-      }&iframe=1&omit_script=1`,
-      {
-        method: "GET",
-      }
-    );
-    const data = await request.json();
-    return data?.html;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-const addToSlate = async ({ slate, files, user }) => {
-  let { filteredFiles } = await ArrayUtilities.removeDuplicateSlateFiles({
-    files,
-    slate,
-  });
-
-  if (!filteredFiles.length) {
-    return { added: 0 };
-  }
-
-  let response = await Data.createSlateFiles({ owner: user, slate, files: filteredFiles });
-  if (!response || response.error) {
-    return { decorator: "SERVER_CREATE_FILE_ADD_TO_SLATE_FAILED", added: 0 };
-  }
-
-  Monitor.upload({ user, slate, files: filteredFiles });
-
-  await Data.updateSlateById({ id: slate.id, updatedAt: new Date() });
-
-  return { added: response.length };
 };

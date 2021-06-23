@@ -41,17 +41,16 @@ export default class SystemPageCardTabs extends React.Component {
         </System.H1>
         <br />
         <br />
-        <System.P>
-          The CardTabGroup component is used to allow the users to switch
-          between views.
-        </System.P>
+        <System.P1>
+          The CardTabGroup component is used to allow the users to switch between views.
+        </System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>Import React and the CardTabGroup Component.</System.P>
+        <System.P1>Import React and the CardTabGroup Component.</System.P1>
         <br />
         <br />
         <CodeBlock>
@@ -63,7 +62,7 @@ import { CardTabGroup } from "slate-react-system";`}
         <System.H2>Usage</System.H2>
         <hr />
         <br />
-        <System.P>Define the tab group values and labels.</System.P>
+        <System.P1>Define the tab group values and labels.</System.P1>
         <br />
         <CodeBlock>
           {`const TAB_GROUP_TWO = [
@@ -79,7 +78,7 @@ const TAB_GROUP_FOUR = [
 ];`}
         </CodeBlock>
         <br />
-        <System.P>Declare the CardTabGroup component.</System.P>
+        <System.P1>Declare the CardTabGroup component.</System.P1>
         <br />
         <CodeBlock>
           {`class ExampleOne extends React.Component {
@@ -153,22 +152,14 @@ class ExampleTwo extends React.Component {
               rows: [
                 {
                   id: 1,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      onChange
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>onChange</span>,
                   b: "function",
                   c: "null",
                   d: "Function called upon an onChange event",
                 },
                 {
                   id: 2,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      value
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>value</span>,
                   b: "boolean",
                   c: "false",
                   d:
@@ -176,15 +167,10 @@ class ExampleTwo extends React.Component {
                 },
                 {
                   id: 3,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      options
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>options</span>,
                   b: "Array",
                   c: "[]",
-                  d:
-                    "An array of options, each of which has a value and a label",
+                  d: "An array of options, each of which has a value and a label",
                 },
                 {
                   id: 4,

@@ -771,12 +771,12 @@ class CarouselSidebar extends React.Component {
     if (showPreviewImageSection) {
       uploadCoverImage = (
         <div style={{ marginBottom: 48 }}>
-          <System.P css={STYLES_SECTION_HEADER} style={{ margin: "48px 0px 8px 0px" }}>
+          <System.P1 css={STYLES_SECTION_HEADER} style={{ margin: "48px 0px 8px 0px" }}>
             Preview image
-          </System.P>
+          </System.P1>
           {coverImage ? (
             <>
-              <System.P css={STYLES_TEXT}>This is the preview image of your file.</System.P>
+              <System.P1 css={STYLES_TEXT}>This is the preview image of your file.</System.P1>
               <div css={STYLES_IMAGE_BOX} style={{ marginTop: 24 }}>
                 <img
                   src={Strings.getURLfromCID(coverImage.cid)}
@@ -786,7 +786,7 @@ class CarouselSidebar extends React.Component {
               </div>
             </>
           ) : (
-            <System.P css={STYLES_TEXT}>Add a preview image for your file.</System.P>
+            <System.P1 css={STYLES_TEXT}>Add a preview image for your file.</System.P1>
           )}
           <div style={{ marginTop: 16 }}>
             <input css={STYLES_FILE_HIDDEN} type="file" id="file" onChange={this._handleUpload} />
@@ -802,10 +802,10 @@ class CarouselSidebar extends React.Component {
     if (editingAllowed) {
       privacy = (
         <div>
-          <System.P css={STYLES_SECTION_HEADER} style={{ marginBottom: 12 }}>
+          <System.P1 css={STYLES_SECTION_HEADER} style={{ marginBottom: 12 }}>
             Visibility
-          </System.P>
-          <System.P
+          </System.P1>
+          <System.P1
             css={STYLES_TEXT}
             style={{
               marginTop: 12,
@@ -814,7 +814,7 @@ class CarouselSidebar extends React.Component {
             {isPublic
               ? "This file is currently visible to everyone and searchable within Slate. It may appear in activity feeds and explore."
               : "This file is only visible to those with the link."}
-          </System.P>
+          </System.P1>
           <RadioGroup
             name="isPublic"
             options={[

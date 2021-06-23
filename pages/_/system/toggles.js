@@ -19,26 +19,20 @@ export default class SystemPageToggles extends React.Component {
 
   render() {
     return (
-      <SystemPage
-        title="SDS: Toggles"
-        description="..."
-        url="https://slate.host/_/system/toggles"
-      >
+      <SystemPage title="SDS: Toggles" description="..." url="https://slate.host/_/system/toggles">
         <System.H1>
           Toggles <ViewSourceLink file="system/toggles.js" />
         </System.H1>
         <br />
         <br />
-        <System.P>
-          The Toggle component is used to switch between two states.
-        </System.P>
+        <System.P1>The Toggle component is used to switch between two states.</System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>Import React and the Toggle Component.</System.P>
+        <System.P1>Import React and the Toggle Component.</System.P1>
         <br />
         <br />
         <CodeBlock>
@@ -50,7 +44,7 @@ import { Toggle } from "slate-react-system";`}
         <System.H2>Usage</System.H2>
         <hr />
         <br />
-        <System.P>Declare the Toggle component.</System.P>
+        <System.P1>Declare the Toggle component.</System.P1>
         <br />
         <CodeBlock>
           {`class ExampleOne extends React.Component {
@@ -92,18 +86,10 @@ class ExampleTwo extends React.Component {
         <System.H2>Output</System.H2>
         <hr />
         <br />
-        <System.Toggle
-          active={this.state.three}
-          name="three"
-          onChange={this._handleChange}
-        />
+        <System.Toggle active={this.state.three} name="three" onChange={this._handleChange} />
         <br />
         <br />
-        <System.Toggle
-          active={this.state.four}
-          name="four"
-          onChange={this._handleChange}
-        />
+        <System.Toggle active={this.state.four} name="four" onChange={this._handleChange} />
         <br />
         <br />
         <br />
@@ -122,22 +108,14 @@ class ExampleTwo extends React.Component {
               rows: [
                 {
                   id: 1,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      onChange
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>onChange</span>,
                   b: "function",
                   c: "null",
                   d: "Function called upon an onChange event",
                 },
                 {
                   id: 2,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      active
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>active</span>,
                   b: "boolean",
                   c: "false",
                   d:

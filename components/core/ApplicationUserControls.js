@@ -135,14 +135,14 @@ export class ApplicationUserControlsPopup extends React.Component {
               justifyContent: "space-between",
             }}
           >
-            <div css={Styles.HEADING_04}>
+            <div css={Styles.H4}>
               {this.props.viewer.data.name || `@${this.props.viewer.username}`}
             </div>
             <div css={Styles.HORIZONTAL_CONTAINER}>
-              <span css={Styles.SMALL_TEXT} style={{ marginRight: 8 }}>{`${
+              <span css={Styles.P3} style={{ marginRight: 8 }}>{`${
                 this.props.viewer.library.length
               } File${this.props.viewer.library.length === 1 ? "" : "s"}`}</span>
-              <span css={Styles.SMALL_TEXT}>{`${this.props.viewer.slates.length} Collection${
+              <span css={Styles.P3}>{`${this.props.viewer.slates.length} Collection${
                 this.props.viewer.slates.length === 1 ? "" : "s"
               }`}</span>
             </div>
@@ -238,7 +238,7 @@ export class ApplicationUserControlsPopup extends React.Component {
                   background: "none",
                   pointerEvents: "auto",
                 }}
-                css={Styles.HEADING_04}
+                css={Styles.H4}
                 itemStyle={{ fontSize: Constants.typescale.lvl0 }}
                 topSection={topSection}
                 navigation={navigation}
@@ -258,7 +258,7 @@ export class ApplicationUserControlsPopup extends React.Component {
                   right: 0,
                   width: "max-content",
                 }}
-                css={Styles.HEADING_04}
+                css={Styles.H4}
                 itemStyle={{ fontSize: Constants.typescale.lvl0 }}
                 topSection={topSection}
                 navigation={navigation}

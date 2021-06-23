@@ -36,7 +36,7 @@ export default class SidebarFAQ extends React.Component {
   render() {
     return (
       <div style={{ marginBottom: 64 }}>
-        <System.P
+        <System.P1
           style={{
             fontFamily: Constants.font.semiBold,
             fontSize: Constants.typescale.lvl3,
@@ -44,58 +44,58 @@ export default class SidebarFAQ extends React.Component {
           }}
         >
           FAQ
-        </System.P>
+        </System.P1>
 
         <div css={STYLES_GROUPING}>
-          <System.P css={STYLES_HEADER}>What is Slate?</System.P>
-          <System.P css={STYLES_TEXT}>
+          <System.P1 css={STYLES_HEADER}>What is Slate?</System.P1>
+          <System.P1 css={STYLES_TEXT}>
             Slate is the first public file storage network designed for research and collaboration.
             It is an open source alternative to services like Dropbox and Google Drive, and is built
             on IPFS and Textile’s Powergate.
-          </System.P>
+          </System.P1>
         </div>
         <div css={STYLES_GROUPING}>
-          <System.P css={STYLES_HEADER}>What can I use it for?</System.P>
-          <System.P css={STYLES_TEXT}>
+          <System.P1 css={STYLES_HEADER}>What can I use it for?</System.P1>
+          <System.P1 css={STYLES_TEXT}>
             Slate is a modern solution for storing and sharing files on the web. It provides you
             with a suite of tools that allow you to easily create moodboards, organize research, and
             create archives with your files all in one space. Slate supports most file types for
             images, videos, audio, and documents.
-          </System.P>
+          </System.P1>
         </div>
         <div css={STYLES_GROUPING}>
-          <System.P css={STYLES_HEADER}>What makes Slate different?</System.P>
-          <System.P css={STYLES_TEXT}>
+          <System.P1 css={STYLES_HEADER}>What makes Slate different?</System.P1>
+          <System.P1 css={STYLES_TEXT}>
             Besides being built with technologies designed around trust and transparency, Slate is
             the first storage application that also works as a social file sharing network. This
             makes it so that you can seamlessly search and access files that are shared publicly on
             the network by other people.
-          </System.P>
+          </System.P1>
         </div>
 
         <div css={STYLES_GROUPING}>
-          <System.P css={STYLES_HEADER}>When will more storage be available?</System.P>
-          <System.P css={STYLES_TEXT}>
+          <System.P1 css={STYLES_HEADER}>When will more storage be available?</System.P1>
+          <System.P1 css={STYLES_TEXT}>
             50GB of storage free will be coming to Slate soon with email verification!
-          </System.P>
+          </System.P1>
         </div>
 
         <div css={STYLES_GROUPING}>
-          <System.P css={STYLES_HEADER}>Can I get involved?</System.P>
-          <System.P css={STYLES_TEXT}>
+          <System.P1 css={STYLES_HEADER}>Can I get involved?</System.P1>
+          <System.P1 css={STYLES_TEXT}>
             Yes! All of Slate is built out in the open by a community of contributors around the
             world. Join our Slack or head over to our GitHub to get in on the action.
-          </System.P>
+          </System.P1>
         </div>
 
         <div css={STYLES_GROUPING}>
-          <System.P
+          <System.P1
             css={STYLES_TEXT}
             style={{ color: Constants.system.brand, cursor: "pointer" }}
             onClick={() => this.props.onAction({ type: "SIDEBAR", value: "SIDEBAR_HELP" })}
           >
             Still have questions? Send us a message!
-          </System.P>
+          </System.P1>
         </div>
       </div>
     );

@@ -65,7 +65,7 @@ export class PopoverNavigation extends React.Component {
                 style={this.props.itemStyle}
                 onClick={each.onClick}
               >
-                <div css={Styles.HEADING_05 || this.props.css}>{each.text}</div>
+                <div css={Styles.H5 || this.props.css}>{each.text}</div>
               </div>
             ))}
           </div>

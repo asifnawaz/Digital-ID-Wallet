@@ -167,9 +167,9 @@ export default function TwitterSignup({
           </motion.div>
           {(!initialEmail || initialEmail !== email) && (
             <motion.div layout>
-              <System.P css={STYLES_SMALL} style={{ marginTop: 16 }}>
+              <System.P1 css={STYLES_SMALL} style={{ marginTop: 16 }}>
                 You will receive a code to verify your email at this address
-              </System.P>
+              </System.P1>
             </motion.div>
           )}
         </AnimateSharedLayout>

@@ -43,7 +43,7 @@ const STYLES_NAV_LINK = css`
     border-bottom: 1px solid ${Constants.system.grayLight2};
     margin: 0px 24px;
     padding: 12px 0px;
-    ${Styles.BODY_02};
+    ${Styles.P2};
   }
 `;
 
@@ -180,7 +180,7 @@ export default class ApplicationHeader extends React.Component {
             height="16px"
             style={{ color: Constants.system.textGrayDark, marginRight: 8 }}
           />
-          <span css={Styles.BODY_02} style={{ color: Constants.system.textGray }}>
+          <span css={Styles.P2} style={{ color: Constants.system.textGray }}>
             Search Slate...
           </span>
         </div>

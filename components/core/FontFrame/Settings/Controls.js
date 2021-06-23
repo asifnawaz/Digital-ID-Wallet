@@ -2,7 +2,7 @@ import * as React from "react";
 import * as SVG from "~/common/svg";
 import * as Constants from "~/common/constants";
 
-import { P } from "~/components/system/components/Typography";
+import { P1 } from "~/components/system/components/Typography";
 import { Slider } from "~/components/system/components/Slider";
 import { css } from "@emotion/react";
 
@@ -37,7 +37,7 @@ export const Controller = ({
         `
       }
     >
-      <P css={STYLES_LABEL}>{label}</P>
+      <P1 css={STYLES_LABEL}>{label}</P1>
       <div css={css({ display: "flex", alignItems: "center" })}>
         <Select
           options={options}
@@ -112,7 +112,7 @@ export const ContentControl = ({ options, value, onChange, showLabel = true }) =
         width: 100%;
       `}
     >
-      {showLabel && <P css={STYLES_LABEL}>Content</P>}
+      {showLabel && <P1 css={STYLES_LABEL}>Content</P1>}
       <Select
         inputStyle={STYLES_CONTENT_SELECT}
         options={options}
@@ -178,7 +178,7 @@ export const AlignmentControl = ({
         `
       }
     >
-      <P css={STYLES_LABEL}>Alignment</P>
+      <P1 css={STYLES_LABEL}>Alignment</P1>
       <div css={css({ display: "flex", alignItems: "center" })}>
         <Select options={options} value={vAlign} onChange={onChange} />
         <div css={STYLES_ALIGNEMENT_BUTTON}>
@@ -246,17 +246,17 @@ const STYLES_FEELING_LUCKY = css`
 
 export const SettingsControl = ({ getRandomLayout, resetLayout }) => (
   <div>
-    <P css={STYLES_LABEL}>Settings</P>
+    <P1 css={STYLES_LABEL}>Settings</P1>
     <div css={STYLES_SETTINGS_WRAPPER}>
       <button css={STYLES_FEELING_LUCKY} onClick={getRandomLayout}>
-        <P
+        <P1
           css={css`
             font-size: 14px;
             white-space: pre;
           `}
         >
           I’m feeling lucky
-        </P>
+        </P1>
       </button>
       <button className="reset_button" onClick={resetLayout}>
         <SVG.RotateCcw height={16} width={16} />

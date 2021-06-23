@@ -146,10 +146,10 @@ export default class SceneArchive extends React.Component {
                     deal. You must have at last 100MB stored to make an archive storage deal.
                   </ScenePageHeader>
 
-                  <System.P style={{ marginTop: 24 }}>
+                  <System.P1 style={{ marginTop: 24 }}>
                     Archive all of your data onto the Filecoin Network with a storage deal using
                     your default settings.
-                  </System.P>
+                  </System.P1>
                   <br />
                   <System.ButtonPrimary
                     onClick={() =>

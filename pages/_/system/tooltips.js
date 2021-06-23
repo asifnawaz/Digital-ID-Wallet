@@ -78,10 +78,10 @@ export default class SystemPageTooltips extends React.Component {
         </System.H1>
         <br />
         <br />
-        <System.P>
+        <System.P1>
           The Tooltip component is used to provide the user with more information in a message that
           appears when they interact with an element.
-        </System.P>
+        </System.P1>
         <System.GlobalTooltip />
         <br />
         <br />
@@ -89,9 +89,9 @@ export default class SystemPageTooltips extends React.Component {
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>
+        <System.P1>
           Import the GlobalTooltip, TooltipWrapper, and optionally the TooltipAnchor Components.
-        </System.P>
+        </System.P1>
         <br />
         <br />
         <CodeBlock>
@@ -104,11 +104,11 @@ import { GlobalTooltip, TooltipWrapper, TooltipAnchor } from "slate-react-system
         <System.H2>Tooltip</System.H2>
         <hr />
         <br />
-        <System.P>
+        <System.P1>
           Declare the <System.CodeText>GlobalTooltip</System.CodeText> at the root level of your
           document (e.g. in index.js or App.js) so it is accessible throughout and will not get
           buried in the DOM tree.
-        </System.P>
+        </System.P1>
         <br />
         <CodeBlock>
           {`class App extends React.Component {
@@ -122,17 +122,17 @@ import { GlobalTooltip, TooltipWrapper, TooltipAnchor } from "slate-react-system
 }`}
         </CodeBlock>
         <br />
-        <System.P>
+        <System.P1>
           Then, wrap your desired anchor with a <System.CodeText>TooltipWrapper</System.CodeText>.
           The wrapper's id should match the id in the dispatchCustomEvent call. This id must be
           unique for each tooltip.
-        </System.P>
+        </System.P1>
         <br />
-        <System.P>
+        <System.P1>
           The tooltip component, passed in as <System.CodeText>content</System.CodeText> to{" "}
           <System.CodeText>TooltipWrapper</System.CodeText>, will be displayed when a
           dispatchCustomEvent is called with its id.
-        </System.P>
+        </System.P1>
         <br />
         <System.TooltipAnchor
           type="body"
@@ -187,11 +187,11 @@ import { GlobalTooltip, TooltipWrapper, TooltipAnchor } from "slate-react-system
         <System.H2>Tooltip Anchor</System.H2>
         <hr />
         <br />
-        <System.P>
+        <System.P1>
           For a pre-styled tooltip that accepts a string and handles dispatchCustomEvent and styling
           for you, use the <System.CodeText>TooltipAnchor</System.CodeText> component. Be sure to
           give it a unique id.
-        </System.P>
+        </System.P1>
         <br />
         <System.TooltipAnchor type="body" id="another-unique-tooltip-id" tooltip="Hello friends!" />
         <br />
@@ -209,16 +209,16 @@ import { GlobalTooltip, TooltipWrapper, TooltipAnchor } from "slate-react-system
         <System.H2>Setting an Orientation</System.H2>
         <hr />
         <br />
-        <System.P>
+        <System.P1>
           You can set a tooltip to appear in a set orientation using the{" "}
           <System.CodeText>horizontal</System.CodeText> and{" "}
           <System.CodeText>vertical</System.CodeText> props. These can be applied to both the{" "}
           <System.CodeText>TooltipWrapper</System.CodeText> and the{" "}
           <System.CodeText>TooltipAnchor</System.CodeText> components.
-        </System.P>
+        </System.P1>
         <br />
         <div>
-          <System.P>Horizontal</System.P>
+          <System.P1>Horizontal</System.P1>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             {["far-left", "left", "center", "right", "far-right"].map((dir, i) => (
               <System.ButtonPrimary
@@ -248,7 +248,7 @@ import { GlobalTooltip, TooltipWrapper, TooltipAnchor } from "slate-react-system
               </div>
             ) : null}
             <div>
-              <System.P>Vertical</System.P>
+              <System.P1>Vertical</System.P1>
               <div
                 style={{
                   display: "flex",

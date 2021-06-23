@@ -20,14 +20,14 @@ export default class SystemTags extends React.Component {
         </System.H1>
         <br />
         <br />
-        <System.P>The Tag component is used to categorize items.</System.P>
+        <System.P1>The Tag component is used to categorize items.</System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>Import React and the AvatarGroup Component.</System.P>
+        <System.P1>Import React and the AvatarGroup Component.</System.P1>
         <br />
         <CodeBlock>
           {`import * as React from "react";
@@ -38,7 +38,7 @@ import { Tag } from "slate-react-system";`}
         <System.H2>Usage</System.H2>
         <hr />
         <br />
-        <System.P>Create an array of tags.</System.P>
+        <System.P1>Create an array of tags.</System.P1>
         <br />
         <CodeBlock>
           {`const tags = [
@@ -53,9 +53,9 @@ import { Tag } from "slate-react-system";`}
         </CodeBlock>
         <br />
         <br />
-        <System.P>
+        <System.P1>
           Declare the Tag component and add the array of tags as a prop to the component.
-        </System.P>
+        </System.P1>
         <br />
         <CodeBlock>{`<Tag placeholder="Add your tags" tags={tags} />`}</CodeBlock>
         <br />
@@ -67,9 +67,9 @@ import { Tag } from "slate-react-system";`}
         <br />
         <br />
         <br />
-        <System.P>
+        <System.P1>
           The Tag component also has a suggestions prop which accepts an array of strings.
-        </System.P>
+        </System.P1>
         <br />
         <CodeBlock>
           {`const tags = [
@@ -94,10 +94,10 @@ const suggestions = [
         </CodeBlock>
         <br />
         <br />
-        <System.P>
+        <System.P1>
           Declare the Tag component and add the array of tags and suggestions as a props to the
           component.
-        </System.P>
+        </System.P1>
         <br />
         <CodeBlock>
           {`<Tag 

@@ -8,6 +8,7 @@ import * as Actions from "~/common/actions";
 import UnityFrame from "~/components/core/UnityFrame";
 import FontFrame from "~/components/core/FontFrame/index.js";
 import MarkdownFrame from "~/components/core/MarkdownFrame";
+import SlateLinkObject from "~/components/core/SlateLinkObject";
 
 import { endsWithAny } from "~/common/utilities";
 import { css } from "@emotion/react";
@@ -84,69 +85,22 @@ export default class SlateMediaObject extends React.Component {
         this.openLink(url);
       }
     }
-    // if (Validations.isLinkType(file.data.type)) {
-    //   console.log("is link type");
-    //   this.fetchEmbed();
-    // }
-
-    // window.iframely && iframely.load();
   }
-
-  // fetchEmbed = async () => {
-  //   const url = this.props.file.data.link.url;
-  //   const response = await Actions.getEmbed(url);
-  //   console.log(response);
-  // };
 
   render() {
     const { file, isMobile } = this.props;
     const type = file.data.type || "";
-    const isLink = Validations.isLinkType(type);
-    const url = isLink ? file.data.link.url : Strings.getURLfromCID(file.cid);
+
+    if (Validations.isLinkType(type)) {
+      return <SlateLinkObject {...this.props} />;
+    }
+
+    const url = Strings.getURLfromCID(file.cid);
     const playType = typeMap[type] ? typeMap[type] : type;
-    console.log(file.data.link.html);
 
     let element = <div css={STYLES_FAILURE}>No Preview</div>;
 
-    if (isLink) {
-      // return <iframe src={file.data.link.url} css={STYLES_IFRAME} />;
-      if (file.data.link.html) {
-        return (
-          <>
-            <script src="//cdn.iframe.ly/embed.js" async></script>
-            <div
-              style={{ width: 400, height: 400 }}
-              dangerouslySetInnerHTML={{
-                __html: file.data.link.html,
-              }}
-            />
-          </>
-          // <div className="iframely-embed">
-          //   <div className="iframely-responsive">
-          //     <a data-iframely-url href={url} />
-          //   </div>
-          // </div>
-
-          // <>
-          //   <div className="iframely-embed">
-          //     <div className="iframely-responsive" style={{ width: 400, height: 400 }}>
-          //       <a
-          //         // href="https://github.com/kushtej/Assist"
-          //         // data-iframely-url="//cdn.iframe.ly/HxgQem5"
-          //         data-iframely-url={`//cdn.iframe.ly/api/oembed?url=${encodeURIComponent(
-          //           url
-          //         )}&api_key=bd2aa436ece01e67ede2f4`}
-          //       ></a>
-          //     </div>
-          //   </div>
-          //   <script async src="//cdn.iframe.ly/embed.js" charset="utf-8"></script>
-          // </>
-        );
-      }
-      return <iframe src={url} css={STYLES_IFRAME} />;
-    }
-
-    if (type.startsWith("application/pdf")) {
+    if (Validations.isPdfType(type)) {
       return (
         <>
           {isMobile ? (
@@ -169,7 +123,7 @@ export default class SlateMediaObject extends React.Component {
       );
     }
 
-    if (type.startsWith("video/")) {
+    if (Validations.isVideoType(type)) {
       return (
         <video
           playsInline
@@ -190,7 +144,7 @@ export default class SlateMediaObject extends React.Component {
       );
     }
 
-    if (type.startsWith("audio/")) {
+    if (Validations.isAudioType(type)) {
       return (
         <div css={STYLES_ASSET}>
           <audio
@@ -243,7 +197,7 @@ export default class SlateMediaObject extends React.Component {
     }
 
     // TODO(jim): We will need to revisit this later.
-    if (type.startsWith("application/unity")) {
+    if (Validations.isUnityType(type)) {
       const { config, loader } = file.data.unity;
 
       return <UnityFrame url={url} unityGameConfig={config} unityGameLoader={loader} key={url} />;

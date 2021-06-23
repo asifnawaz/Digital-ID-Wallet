@@ -36,17 +36,17 @@ export default class SystemPageListEditor extends React.Component {
         </System.H1>
         <br />
         <br />
-        <System.P>
-          The List Editor component allows the user to add to, delete from, and
-          reorder a list of strings.
-        </System.P>
+        <System.P1>
+          The List Editor component allows the user to add to, delete from, and reorder a list of
+          strings.
+        </System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>Import React and the ListEditor Component.</System.P>
+        <System.P1>Import React and the ListEditor Component.</System.P1>
         <br />
         <br />
         <CodeBlock>
@@ -65,7 +65,7 @@ import { ListEditor } from "slate-react-system";`}
           onChange={this._handleListChange}
         />
         <br />
-        <System.P>Define the List Editor component.</System.P>
+        <System.P1>Define the List Editor component.</System.P1>
         <br />
         <CodeBlock>
           {`class ExampleOne extends React.Component {
@@ -115,22 +115,14 @@ import { ListEditor } from "slate-react-system";`}
               rows: [
                 {
                   id: 1,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      onChange
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>onChange</span>,
                   b: "function",
                   c: "null",
                   d: "Function called upon an onChange event",
                 },
                 {
                   id: 2,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      options
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>options</span>,
                   b: "Array",
                   c: "null",
                   d:

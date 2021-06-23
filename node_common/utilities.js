@@ -4,6 +4,8 @@ import * as Constants from "~/node_common/constants";
 import * as Data from "~/node_common/data";
 import * as Social from "~/node_common/social";
 import * as Logging from "~/common/logging";
+import * as ArrayUtilities from "~/node_common/array-utilities";
+import * as Monitor from "~/node_common/monitor";
 
 import crypto from "crypto";
 import JWT from "jsonwebtoken";
@@ -251,4 +253,35 @@ export const getUserTags = ({ library, slates }) => {
   });
 
   return Array.from(tags);
+};
+
+export const addToSlate = async ({ slate, files, user, saveCopy = false }) => {
+  let { filteredFiles } = await ArrayUtilities.removeDuplicateSlateFiles({
+    files,
+    slate,
+  });
+
+  if (!filteredFiles.length) {
+    return { added: 0 };
+  }
+
+  let response = await Data.createSlateFiles({ owner: user, slate, files: filteredFiles });
+  if (!response || response.error) {
+    return {
+      decorator: saveCopy
+        ? "SERVER_SAVE_COPY_ADD_TO_SLATE_FAILED"
+        : "SERVER_CREATE_FILE_ADD_TO_SLATE_FAILED",
+      added: 0,
+    };
+  }
+
+  if (saveCopy) {
+    Monitor.saveCopy({ user, slate, files: filteredFiles });
+  } else {
+    Monitor.upload({ user, slate, files: filteredFiles });
+  }
+
+  await Data.updateSlateById({ id: slate.id, updatedAt: new Date() });
+
+  return { added: response.length };
 };

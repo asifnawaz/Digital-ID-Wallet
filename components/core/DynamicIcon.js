@@ -6,7 +6,9 @@ export class DynamicIcon extends React.Component {
   };
 
   _handleClick = (e) => {
-    this.props.onClick(e);
+    if (this.props.onClick) {
+      this.props.onClick(e);
+    }
     this.setState({ clicked: true });
     setTimeout(() => this.setState({ clicked: false }), this.props.timeout || 1000);
   };

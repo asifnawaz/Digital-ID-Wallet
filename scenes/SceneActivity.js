@@ -495,12 +495,14 @@ export default class SceneActivity extends React.Component {
                 })}
               </div>
               <div css={STYLES_LOADER} style={{ height: 100 }}>
-                {this.state.loading === "loading" ? <LoaderSpinner /> : null}
+                {this.state.loading === "loading" ? (
+                  <LoaderSpinner style={{ height: 32, width: 32 }} />
+                ) : null}
               </div>
             </div>
           ) : this.state.loading === "loading" ? (
             <div css={STYLES_LOADER}>
-              <LoaderSpinner />
+              <LoaderSpinner style={{ height: 32, width: 32 }} />
             </div>
           ) : (
             <EmptyState>

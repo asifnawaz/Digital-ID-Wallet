@@ -47,15 +47,15 @@ export default class SystemPageLineCharts extends React.Component {
         <br />
         <br />
 
-        <System.P>
+        <System.P1>
           The Line Chart component displays categories of data points on a line chart.
-        </System.P>
+        </System.P1>
         <br />
         <br />
         <System.H2>Usage</System.H2>
         <hr />
         <br />
-        <System.P>Create an array of data.</System.P>
+        <System.P1>Create an array of data.</System.P1>
         <br />
         <CodeBlock>{`
 const data = [
@@ -76,7 +76,7 @@ const data = [
 ];
 `}</CodeBlock>
         <br />
-        <System.P>Configure chart layout.</System.P>
+        <System.P1>Configure chart layout.</System.P1>
         <br />
         <CodeBlock>{`// Use this to determine how many tick marks to be written on X axis
 const tickNumber = 4;
@@ -87,7 +87,7 @@ const yCeiling = 400;
 //Use this to choose how much of the chart is filled horizontally displayMax = 550
 const xWall = 500;`}</CodeBlock>
         <br />
-        <System.P>Declare the LineChart component.</System.P>
+        <System.P1>Declare the LineChart component.</System.P1>
         <br />
         <CodeBlock>{`
 <Chart 

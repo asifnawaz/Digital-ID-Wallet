@@ -51,9 +51,9 @@ export default class SlateReactSystemPage extends React.Component {
         <System.H1>Component Library Test</System.H1>
         <br />
         <br />
-        <System.P>
+        <System.P1>
           If this works. That means the component library bundle is working correctly.
-        </System.P>
+        </System.P1>
         <br />
         <br />
         <div style={{ marginTop: 24 }}>

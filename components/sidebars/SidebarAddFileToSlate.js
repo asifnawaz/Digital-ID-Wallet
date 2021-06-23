@@ -68,7 +68,7 @@ export default class SidebarAddFileToSlate extends React.Component {
   render() {
     return (
       <div>
-        <System.P
+        <System.P1
           style={{
             fontFamily: Constants.font.semiBold,
             fontSize: Constants.typescale.lvl3,
@@ -76,9 +76,9 @@ export default class SidebarAddFileToSlate extends React.Component {
           }}
         >
           Add files to collection
-        </System.P>
+        </System.P1>
 
-        <System.P css={STYLES_HEADER}>Slates</System.P>
+        <System.P1 css={STYLES_HEADER}>Slates</System.P1>
 
         <SlatePicker
           slates={this.props.viewer.slates}

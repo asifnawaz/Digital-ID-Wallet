@@ -15,17 +15,17 @@ export default class SystemPageButtons extends React.Component {
         </System.H1>
         <br />
         <br />
-        <System.P>
+        <System.P1>
           The Button component is used to trigger an action or event, such as submitting a form or
           saving users information.
-        </System.P>
+        </System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>Import React and the Button Components.</System.P>
+        <System.P1>Import React and the Button Components.</System.P1>
         <br />
         <br />
         <CodeBlock>
@@ -43,11 +43,11 @@ import {
         <System.H2>Regular width</System.H2>
         <hr />
         <br />
-        <System.P>
+        <System.P1>
           There are five variations of the button component.
           <br />
           Primary, Secondary, Tertiary, Disabled, and Warning.
-        </System.P>
+        </System.P1>
         <br />
         <System.ButtonPrimary>Primary</System.ButtonPrimary> &nbsp;
         <System.ButtonSecondary>Secondary</System.ButtonSecondary> &nbsp;
@@ -93,7 +93,7 @@ class ExampleWarning extends React.Component {
         <System.H2>Full width</System.H2>
         <hr />
         <br />
-        <System.P>Each of the button styles has a full width option.</System.P>
+        <System.P1>Each of the button styles has a full width option.</System.P1>
         <br />
         <System.ButtonPrimary full>Primary button full</System.ButtonPrimary>
         <br />
@@ -148,10 +148,10 @@ class ExampleWarningFull extends React.Component {
         <System.H2>Labels</System.H2>
         <hr />
         <br />
-        <System.P>
+        <System.P1>
           You can add the <i>type='label'</i> property to convert any of the above buttons into a
           label.
-        </System.P>
+        </System.P1>
         <br />
         <System.ButtonPrimary type="label">Primary label</System.ButtonPrimary> &nbsp;
         <System.ButtonSecondary type="label">Secondary label</System.ButtonSecondary> &nbsp;

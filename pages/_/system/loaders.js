@@ -15,14 +15,14 @@ export default class SystemLoaders extends React.Component {
         </System.H1>
         <br />
         <br />
-        <System.P>The Loader Component is used to output an animated page loader.</System.P>
+        <System.P1>The Loader Component is used to output an animated page loader.</System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>Import the Loader Components.</System.P>
+        <System.P1>Import the Loader Components.</System.P1>
         <br />
         <br />
         <CodeBlock>
@@ -41,7 +41,7 @@ export default class SystemLoaders extends React.Component {
         <System.H2>Usage</System.H2>
         <hr />
         <br />
-        <System.P>Circles</System.P>
+        <System.P1>Circles</System.P1>
         <br />
         <System.LoaderCircles />
         <br />
@@ -49,7 +49,7 @@ export default class SystemLoaders extends React.Component {
         <br />
         <br />
         <br />
-        <System.P>Progress Bar</System.P>
+        <System.P1>Progress Bar</System.P1>
         <br />
         <System.LoaderProgress />
         <br />
@@ -57,7 +57,7 @@ export default class SystemLoaders extends React.Component {
         <br />
         <br />
         <br />
-        <System.P>Spinner</System.P>
+        <System.P1>Spinner</System.P1>
         <br />
         <System.LoaderSpinner />
         <br />
@@ -66,7 +66,7 @@ export default class SystemLoaders extends React.Component {
         <br />
         <br />
         <br />
-        <System.P>Diamonds</System.P>
+        <System.P1>Diamonds</System.P1>
         <br />
         <System.LoaderDiamonds />
         <br />
@@ -74,7 +74,7 @@ export default class SystemLoaders extends React.Component {
         <br />
         <br />
         <br />
-        <System.P>Rotate</System.P>
+        <System.P1>Rotate</System.P1>
         <br />
         <System.LoaderRotate />
         <br />
@@ -82,7 +82,7 @@ export default class SystemLoaders extends React.Component {
         <br />
         <br />
         <br />
-        <System.P>Moon</System.P>
+        <System.P1>Moon</System.P1>
         <br />
         <System.LoaderMoon />
         <br />

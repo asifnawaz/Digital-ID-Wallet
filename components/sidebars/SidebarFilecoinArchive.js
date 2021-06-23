@@ -47,19 +47,19 @@ export default class SidebarFilecoinArchive extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <System.P
+        <System.P1
           style={{
             fontFamily: Constants.font.semiBold,
             fontSize: Constants.typescale.lvl3,
           }}
         >
           Archive your data
-        </System.P>
+        </System.P1>
 
-        <System.P style={{ marginTop: 24 }}>
+        <System.P1 style={{ marginTop: 24 }}>
           This will archive all of your data onto the Filecoin Network with a storage deal using
           your default settings.
-        </System.P>
+        </System.P1>
 
         <System.ButtonPrimary
           full

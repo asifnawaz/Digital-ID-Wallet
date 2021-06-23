@@ -2,7 +2,7 @@ import * as React from "react";
 import * as Constants from "~/common/constants";
 
 import { css } from "@emotion/react";
-import { P } from "~/components/system/components/Typography";
+import { P1 } from "~/components/system/components/Typography";
 
 const TABLE_COLUMN_WIDTH_DEFAULTS = {
   1: "100%",
@@ -71,7 +71,7 @@ export class Table extends React.Component {
     const ac = {};
 
     if (!data || !data.rows || data.rows.length === 0) {
-      return <P style={{ padding: 24 }}>No data.</P>;
+      return <P1 style={{ padding: 24 }}>No data.</P1>;
     }
 
     for (let x = 0; x < data.columns.length; x++) {

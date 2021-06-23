@@ -105,10 +105,11 @@ export default async (req, res) => {
   //NOTE(martina): adding to the slate if there is one
   const filesToAddToSlate = createdFiles.concat(duplicateFiles); //NOTE(martina): files that are already owned by the user are included in case they aren't yet in that specific slate
   if (slate && filesToAddToSlate.length) {
-    const { decorator: returnedDecorator, added: addedToSlate } = await addToSlate({
+    const { decorator: returnedDecorator, added: addedToSlate } = await Utilities.addToSlate({
       slate,
       files: filesToAddToSlate,
       user,
+      saveCopy: true,
     });
 
     if (returnedDecorator) {
@@ -132,24 +133,24 @@ export default async (req, res) => {
   });
 };
 
-const addToSlate = async ({ slate, files, user }) => {
-  let { filteredFiles } = await ArrayUtilities.removeDuplicateSlateFiles({
-    files,
-    slate,
-  });
+// const addToSlate = async ({ slate, files, user }) => {
+//   let { filteredFiles } = await ArrayUtilities.removeDuplicateSlateFiles({
+//     files,
+//     slate,
+//   });
 
-  if (!filteredFiles.length) {
-    return { added: 0 };
-  }
+//   if (!filteredFiles.length) {
+//     return { added: 0 };
+//   }
 
-  let response = await Data.createSlateFiles({ owner: user, slate, files: filteredFiles });
-  if (!response || response.error) {
-    return { decorator: "SERVER_SAVE_COPY_ADD_TO_SLATE_FAILED", added: 0 };
-  }
+//   let response = await Data.createSlateFiles({ owner: user, slate, files: filteredFiles });
+//   if (!response || response.error) {
+//     return { decorator: "SERVER_SAVE_COPY_ADD_TO_SLATE_FAILED", added: 0 };
+//   }
 
-  Monitor.saveCopy({ user, slate, files: filteredFiles });
+//   Monitor.saveCopy({ user, slate, files: filteredFiles });
 
-  await Data.updateSlateById({ id: slate.id, updatedAt: new Date() });
+//   await Data.updateSlateById({ id: slate.id, updatedAt: new Date() });
 
-  return { added: response.length };
-};
+//   return { added: response.length };
+// };

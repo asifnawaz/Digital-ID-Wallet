@@ -45,14 +45,14 @@ export default class SidebarCreatePaymentChannel extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <System.P
+        <System.P1
           style={{
             fontFamily: Constants.font.semiBold,
             fontSize: Constants.typescale.lvl3,
           }}
         >
           Create a payment channel
-        </System.P>
+        </System.P1>
 
         <System.SelectMenu
           full

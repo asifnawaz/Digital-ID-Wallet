@@ -23,29 +23,22 @@ export default class SystemPageInputs extends React.Component {
 
   render() {
     return (
-      <SystemPage
-        title="SDS: Inputs"
-        description="..."
-        url="https://slate.host/_/system/inputs"
-      >
+      <SystemPage title="SDS: Inputs" description="..." url="https://slate.host/_/system/inputs">
         <System.H1>
           Inputs <ViewSourceLink file="system/inputs.js" />
         </System.H1>
         <br />
         <br />
-        <System.P>
-          The Input component is used to get a users input in a text field or a
-          textbox.
-        </System.P>
+        <System.P1>
+          The Input component is used to get a users input in a text field or a textbox.
+        </System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>
-          Import React and the Input and/or the Textarea Components.
-        </System.P>
+        <System.P1>Import React and the Input and/or the Textarea Components.</System.P1>
         <br />
         <br />
         <CodeBlock>
@@ -57,7 +50,7 @@ import { Input, Textarea } from "slate-react-system";`}
         <System.H2>Textarea</System.H2>
         <hr />
         <br />
-        <System.P>Declare the Textarea component.</System.P>
+        <System.P1>Declare the Textarea component.</System.P1>
         <br />
         <System.Textarea
           name="exampleOne"
@@ -88,9 +81,7 @@ import { Input, Textarea } from "slate-react-system";`}
         <System.H2>Input with label and description</System.H2>
         <hr />
         <br />
-        <System.P>
-          Declare the Input component with a label and description value.
-        </System.P>
+        <System.P1>Declare the Input component with a label and description value.</System.P1>
         <br />
         <System.Input
           label="Location of your pastries"
@@ -129,10 +120,9 @@ import { Input, Textarea } from "slate-react-system";`}
         <System.H2>Input with max length</System.H2>
         <hr />
         <br />
-        <System.P>
-          Declare the Input component with the maximum number of characters
-          allowed.
-        </System.P>
+        <System.P1>
+          Declare the Input component with the maximum number of characters allowed.
+        </System.P1>
         <br />
         <System.Input
           label="Max length is 14"
@@ -167,7 +157,7 @@ import { Input, Textarea } from "slate-react-system";`}
         <System.H2>Input with copy and paste</System.H2>
         <hr />
         <br />
-        <System.P>Declare the Input component with copyable.</System.P>
+        <System.P1>Declare the Input component with copyable.</System.P1>
         <br />
         <System.Input
           label="Copy and paste (read only)"
@@ -204,11 +194,10 @@ import { Input, Textarea } from "slate-react-system";`}
         <System.H2>Input with icon and onSubmit</System.H2>
         <hr />
         <br />
-        <System.P>
-          Declare the Input component with an icon and an onSubmit function.
-          onSubmit will be triggered upon click of the icon and upon key down of
-          the enter key.
-        </System.P>
+        <System.P1>
+          Declare the Input component with an icon and an onSubmit function. onSubmit will be
+          triggered upon click of the icon and upon key down of the enter key.
+        </System.P1>
         <br />
         <System.Input
           label="Icon and submit function"
@@ -249,7 +238,7 @@ import { Input, Textarea } from "slate-react-system";`}
         <System.H2>Input with validation</System.H2>
         <hr />
         <br />
-        <System.P>Declare the Input component with validation.</System.P>
+        <System.P1>Declare the Input component with validation.</System.P1>
         <br />
         <System.Input
           label="Success"
@@ -326,22 +315,14 @@ class ExampleError extends React.Component {
               rows: [
                 {
                   id: 1,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      onChange
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>onChange</span>,
                   b: "function",
                   c: "null",
                   d: "Function called upon an onChange event.",
                 },
                 {
                   id: 2,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      value
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>value</span>,
                   b: "string",
                   c: "null",
                   d:

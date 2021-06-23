@@ -62,7 +62,19 @@ import { TabGroup } from "~/components/system/components/TabGroup";
 import { Table } from "~/components/system/components/Table";
 import { Textarea } from "~/components/system/components/Textarea";
 import { Toggle } from "~/components/system/components/Toggle";
-import { H1, H2, H3, H4, P, UL, OL, LI } from "~/components/system/components/Typography";
+import {
+  H1,
+  H2,
+  H3,
+  H4,
+  P1,
+  P2,
+  P3,
+  UL,
+  OL,
+  LI,
+  A,
+} from "~/components/system/components/Typography";
 import { Divider } from "~/components/system/components/Divider";
 
 // NOTE(jim): Fragments
@@ -144,10 +156,13 @@ export {
   H2,
   H3,
   H4,
-  P,
+  P1,
+  P2,
+  P3,
   UL,
   OL,
   LI,
+  A,
   ViewSourceLink,
   // NOTE(jim): Fragments, not meant to be used.
   Boundary,

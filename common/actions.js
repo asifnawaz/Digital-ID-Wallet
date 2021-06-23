@@ -104,18 +104,17 @@ export const sendFilecoin = async (data) => {
   });
 };
 
-export const mql = async (url) => {
-  try {
-    const res = await microlink(url, { screenshot: true });
-    return res;
-  } catch (e) {
-    console.log(e);
-    console.log("in here");
-    if (e.description) {
-      Events.dispatchMessage({ message: e.description });
-    }
-  }
-};
+// export const mql = async (url) => {
+//   try {
+//     const res = await microlink(url, { screenshot: true });
+//     return res;
+//   } catch (e) {
+//     console.log(e);
+//     if (e.description) {
+//       Events.dispatchMessage({ message: e.description });
+//     }
+//   }
+// };
 
 export const checkUsername = async (data) => {
   return await returnJSON(`/api/users/check-username`, {
@@ -241,6 +240,14 @@ export const search = async (data) => {
 export const createFile = async (data) => {
   await Websockets.checkWebsocket();
   return await returnJSON(`/api/data/create`, {
+    ...DEFAULT_OPTIONS,
+    body: JSON.stringify({ data }),
+  });
+};
+
+export const createLink = async (data) => {
+  await Websockets.checkWebsocket();
+  return await returnJSON(`/api/data/create-link`, {
     ...DEFAULT_OPTIONS,
     body: JSON.stringify({ data }),
   });

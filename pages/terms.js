@@ -185,19 +185,19 @@ export default class TermsPage extends React.Component {
               </ul>
             </div>
             <div css={STYLES_CONTENT_BLOCK2}>
-              <System.P>
+              <System.P1>
                 The following terms and conditions govern all use of <b>https://slate.host</b>{" "}
                 ("Website") and all content, slates, files, services and products available at or
                 through the <b>Website</b>.
-              </System.P>
+              </System.P1>
               <br />
-              <System.P>
+              <System.P1>
                 Please read this Agreement carefully before accessing or using the <b>Website</b>.
                 By accessing or using any part of the web site, you agree to become bound by the
                 terms and conditions of this <b>Agreement</b>.
-              </System.P>
+              </System.P1>
               <br />
-              <System.P>
+              <System.P1>
                 If you do not agree to all the terms and conditions of this <b>Agreement</b>, then
                 you may not access the <b>Website</b> or use any services. If these terms and
                 conditions are considered an offer by <b>Slate</b>, acceptance is expressly limited
@@ -216,23 +216,23 @@ export default class TermsPage extends React.Component {
                   FILECOIN NETWORK ON THIS WEBSITE. SLATE ASSUMES NO RESPONSIBILITY OR LIABILITY IN
                   CONNECTION WITH ANY ATTEMPT TO USE SLATE TO MAKE STORAGE DEALS.
                 </b>
-              </System.P>
+              </System.P1>
               <div id="Storage deals">
                 <br />
                 <br />
                 <h2 css={STYLES_H2}>Storage deals</h2>
                 <br />
-                <System.P>
+                <System.P1>
                   You agree to allow <b>Slate</b> employees to make storage deals on your behalf to
                   the <b>Filecoin Network</b> at any given time.
-                </System.P>
+                </System.P1>
               </div>
               <div id="Filecoin Wallet">
                 <br />
                 <br />
                 <h2 css={STYLES_H2}>Filecoin Wallet</h2>
                 <br />
-                <System.P>
+                <System.P1>
                   Your <b>Filecoin Wallet</b> enables you to store, track and manage Filecoin
                   contained in your <b>Filecoin Wallet</b> and utilize the <strong>Website</strong>.
                   Your <b>Filecoin Wallet</b> can only store Filecoin and will not hold any USD,
@@ -243,9 +243,9 @@ export default class TermsPage extends React.Component {
                   to purchasing storage deals with Miners on the <b>Filecoin Network</b>.{" "}
                   <b>Slate</b> does not facilitate the exchange of Filecoin to other users or
                   third-parties for other fiat or virtual currencies.
-                </System.P>
+                </System.P1>
                 <br />
-                <System.P>
+                <System.P1>
                   <b>
                     SLATE CANNOT REVERSE A TRANSACTION WHICH HAS BEEN BROADCAST TO THE FILECOIN
                     NETWORK. UNDER NO CIRCUMSTANCES SHOULD YOU ATTEMPT TO USE YOUR FILECOIN WALLET
@@ -254,9 +254,9 @@ export default class TermsPage extends React.Component {
                     CONNECTION WITH ANY ATTEMPT TO USE THE WEBSITE FOR ANY ACTIVITIES OR VIRTUAL
                     CURRENCIES THAT SLATE DOES NOT SUPPORT.
                   </b>
-                </System.P>
+                </System.P1>
                 <br />
-                <System.P>
+                <System.P1>
                   <b>Slate</b> does not own or control the <b>Filecoin Network</b> or the underlying
                   software protocols which govern the operation of Storage deals on our website. In
                   general, the underlying protocols are open source, and anyone can use, copy,
@@ -274,14 +274,14 @@ export default class TermsPage extends React.Component {
                   cease supporting) either branch of the forked protocol entirely. You acknowledge
                   and agree that <b>Slate</b> assumes absolutely no responsibility whatsoever in
                   respect of an unsupported branch of a forked protocol.
-                </System.P>
+                </System.P1>
               </div>
               <div id="Your account and slates">
                 <br />
                 <br />
                 <h2 css={STYLES_H2}>Your account and slates</h2>
                 <br />
-                <System.P>
+                <System.P1>
                   If you create an account on the <b>Website</b>, you are responsible for
                   maintaining the security of your account and its content, and you are fully
                   responsible for all activities that occur under the account and any other actions
@@ -297,14 +297,14 @@ export default class TermsPage extends React.Component {
                   damages of any kind incurred as a result of such acts or omissions. <b>Slate</b>{" "}
                   cannot and will not be liable for any loss or damage arising from your failure to
                   comply with the above requirements.
-                </System.P>
+                </System.P1>
               </div>
               <div id="Responsibility of contributors">
                 <br />
                 <br />
                 <h2 css={STYLES_H2}>Responsibility of contributors</h2>
                 <br />
-                <System.P>
+                <System.P1>
                   If you operate an account, post material to the <b>Website</b>, post links or
                   files on the <b>Website</b>, or otherwise make (or allow any third party to make)
                   material available by means of the <b>Website</b> (any such material, Content),
@@ -314,14 +314,14 @@ export default class TermsPage extends React.Component {
                   warrant that: the downloading, copying and use of the Content will not infringe
                   the proprietary rights, including but not limited to the copyright, patent,
                   trademark or trade secret rights, of any third party.
-                </System.P>
+                </System.P1>
               </div>
               <div id="Changes">
                 <br />
                 <br />
                 <h2 css={STYLES_H2}>Changes</h2>
                 <br />
-                <System.P>
+                <System.P1>
                   <b>Slate</b> reserves the right, at its sole discretion, to modify or replace any
                   part of this Agreement. It is your responsibility to check this Agreement
                   periodically for changes. Your continued use of or access to the <b>Website</b>{" "}
@@ -330,14 +330,14 @@ export default class TermsPage extends React.Component {
                   features through the <b>Website</b>
                   (including, the release of new tools and resources). Such new features and/or
                   services shall be subject to the terms and conditions of this Agreement.
-                </System.P>
+                </System.P1>
               </div>
               <div id="Termination">
                 <br />
                 <br />
                 <h2 css={STYLES_H2}>Termination</h2>
                 <br />
-                <System.P>
+                <System.P1>
                   <b>Slate</b> may terminate your access to all or any part of the <b>Website</b> at
                   any time, with or without cause, with or without notice, effective immediately. If
                   you wish to terminate this Agreement or your <b>Slate</b> account (if you have
@@ -345,14 +345,14 @@ export default class TermsPage extends React.Component {
                   Agreement which by their nature should survive termination shall survive
                   termination, including, without limitation, ownership provisions, warranty
                   disclaimers, indemnity and limitations of liability.
-                </System.P>
+                </System.P1>
               </div>
               <div id="Disclaimer of warranties">
                 <br />
                 <br />
                 <h2 css={STYLES_H2}>Disclaimer of warranties</h2>
                 <br />
-                <System.P>
+                <System.P1>
                   The <b>Website</b> is provided “as is”. <b>Slate</b> and its suppliers and
                   licensors hereby disclaim all warranties of any kind, express or implied,
                   including, without limitation, the warranties of merchantability, fitness for a
@@ -361,14 +361,14 @@ export default class TermsPage extends React.Component {
                   that access thereto will be continuous or uninterrupted. You understand that you
                   download from, or otherwise obtain content or services through, the <b>Website</b>{" "}
                   at your own discretion and risk.
-                </System.P>
+                </System.P1>
               </div>
               <div id="Limitation of liability">
                 <br />
                 <br />
                 <h2 css={STYLES_H2}>Limitation of liability</h2>
                 <br />
-                <System.P>
+                <System.P1>
                   In no event will <b>Slate</b>, or its suppliers or licensors, be liable with
                   respect to any subject matter of this <b>Agreement</b> under any contract,
                   negligence, strict liability or other legal or equitable theory for: any special,
@@ -376,20 +376,20 @@ export default class TermsPage extends React.Component {
                   products or services; for interruption of use or loss or corruption of data; for
                   any amounts that exceed the fees paid by you to <b>Slate</b> under this{" "}
                   <b>Agreement</b> during the twelve (12) month period prior to the cause of action.
-                </System.P>
+                </System.P1>
                 <br />
-                <System.P>
+                <System.P1>
                   <b>Slate</b> shall have no liability for any failure or delay due to matters
                   beyond their reasonable control. The foregoing shall not apply to the extent
                   prohibited by applicable law.
-                </System.P>
+                </System.P1>
               </div>
               <div id="General representation and warranty">
                 <br />
                 <br />
                 <h2 css={STYLES_H2}>General representation and warranty</h2>
                 <br />
-                <System.P>
+                <System.P1>
                   You represent and warrant that Your use of the <b>Website</b> will be in strict
                   accordance with the <b>Slate</b> Community Guidelines, with this Agreement and
                   with all applicable laws and regulations (including without limitation any local
@@ -398,34 +398,34 @@ export default class TermsPage extends React.Component {
                   regarding the transmission of technical data exported from the United States or
                   the country in which you reside) and your use of the <b>Website</b> will not
                   infringe or misappropriate the intellectual property rights of any third party.
-                </System.P>
+                </System.P1>
               </div>
               <div id="Indemnification">
                 <br />
                 <br />
                 <h2 css={STYLES_H2}>Indemnification</h2>
                 <br />
-                <System.P>
+                <System.P1>
                   You agree to indemnify and hold harmless <b>Slate</b>, its contractors, and its
                   licensors, and their respective directors, officers, employees and agents from and
                   against any and all claims and expenses, including attorneys fees, arising out of
                   your use of the <b>Website</b>, including but not limited to out of your violation
                   this Agreement.
-                </System.P>
+                </System.P1>
               </div>
               <div id="Miscellaneous">
                 <br />
                 <br />
                 <h2 css={STYLES_H2}>Miscellaneous</h2>
                 <br />
-                <System.P>
+                <System.P1>
                   This Agreement constitutes the entire <b>Agreement</b> between <b>Slate</b> and
                   you concerning the subject matter hereof, and they may only be modified by a
                   written amendment signed by an authorized employee of <b>Slate</b>, or by the
                   posting by <b>Slate</b> of a revised version. Except to the extent applicable law,
                   if any, provides otherwise, this Agreement, any access to or use of the{" "}
                   <b>Website</b> will be governed by the laws of the state of California, U.S.A.
-                </System.P>
+                </System.P1>
               </div>
             </div>
           </div>

@@ -18,26 +18,20 @@ export default class SystemPageTables extends React.Component {
 
   render() {
     return (
-      <SystemPage
-        title="SDS: Tables"
-        description="..."
-        url="https://slate.host/_/system/tables"
-      >
+      <SystemPage title="SDS: Tables" description="..." url="https://slate.host/_/system/tables">
         <System.H1>
           Tables <ViewSourceLink file="system/tables.js" />
         </System.H1>
         <br />
         <br />
-        <System.P>An example of a table component.</System.P>
+        <System.P1>An example of a table component.</System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>
-          Import React and the TableContent, TableColumn Components.
-        </System.P>
+        <System.P1>Import React and the TableContent, TableColumn Components.</System.P1>
         <br />
         <br />
         <CodeBlock>
@@ -49,7 +43,7 @@ import { TableContent, TableColumn } from "slate-react-system";`}
         <System.H2>Usage</System.H2>
         <hr />
         <br />
-        <System.P>Declare the Group and Table components.</System.P>
+        <System.P1>Declare the Group and Table components.</System.P1>
         <br />
 
         <CodeBlock>
@@ -298,10 +292,10 @@ import { TableContent, TableColumn } from "slate-react-system";`}
         <System.H2>TableContents</System.H2>
         <hr />
         <br />
-        <System.P>
-          The Table Component has many TableContent properties that can be added
-          to alter the column using the <i>type</i> props.
-        </System.P>
+        <System.P1>
+          The Table Component has many TableContent properties that can be added to alter the column
+          using the <i>type</i> props.
+        </System.P1>
         <br />
         <CodeBlock>
           {`class ExampleTwo extends React.Component {

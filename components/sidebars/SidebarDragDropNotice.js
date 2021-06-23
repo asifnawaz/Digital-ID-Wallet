@@ -25,19 +25,19 @@ export default class SidebarDragDropNotice extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <System.P
+        <System.P1
           style={{
             fontFamily: Constants.font.semiBold,
             fontSize: Constants.typescale.lvl3,
           }}
         >
           Drag & drop
-        </System.P>
+        </System.P1>
         <FileTypeGroup style={{ margin: "64px 0px" }} />
-        <System.P style={{ marginTop: 24 }}>
+        <System.P1 style={{ marginTop: 24 }}>
           Drag and drop a file anywhere on the screen to add it to your data. Dropping a file while
           on a collection page will add it to that collection.
-        </System.P>
+        </System.P1>
 
         <SidebarWarningMessage />
       </React.Fragment>

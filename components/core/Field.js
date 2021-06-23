@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as SVG from "~/common/svg";
 
-import { P } from "~/components/system/components/Typography";
+import { P1 } from "~/components/system/components/Typography";
 import { Input } from "~/components/system";
 import { css } from "@emotion/react";
 
@@ -67,10 +67,10 @@ const STYLES_INPUT_SUCCESS = (theme) => css`
 const PasswordValidations = ({ validations }) => {
   return (
     <div css={STYLES_PASSWORD_VALIDATIONS}>
-      <P css={STYLES_SMALL_TEXT}>Passwords should</P>
+      <P1 css={STYLES_SMALL_TEXT}>Passwords should</P1>
       <div css={STYLES_PASSWORD_VALIDATION}>
         <div css={[STYLES_CIRCLE, validations.validLength && STYLES_CIRCLE_SUCCESS]} />
-        <P css={STYLES_SMALL_TEXT}>Be at least 8 characters long</P>
+        <P1 css={STYLES_SMALL_TEXT}>Be at least 8 characters long</P1>
       </div>
       <div css={STYLES_PASSWORD_VALIDATION}>
         <div
@@ -79,15 +79,15 @@ const PasswordValidations = ({ validations }) => {
             validations.containsLowerCase && validations.containsUpperCase && STYLES_CIRCLE_SUCCESS,
           ]}
         />
-        <P css={STYLES_SMALL_TEXT}>Contain both uppercase and lowercase letters</P>
+        <P1 css={STYLES_SMALL_TEXT}>Contain both uppercase and lowercase letters</P1>
       </div>
       <div css={STYLES_PASSWORD_VALIDATION}>
         <div css={[STYLES_CIRCLE, validations.containsNumbers && STYLES_CIRCLE_SUCCESS]} />
-        <P css={STYLES_SMALL_TEXT}>Contain at least 1 number</P>
+        <P1 css={STYLES_SMALL_TEXT}>Contain at least 1 number</P1>
       </div>
       <div css={STYLES_PASSWORD_VALIDATION}>
         <div css={[STYLES_CIRCLE, validations.containsSymbol && STYLES_CIRCLE_SUCCESS]} />
-        <P css={STYLES_SMALL_TEXT}>Contain at least 1 symbol</P>
+        <P1 css={STYLES_SMALL_TEXT}>Contain at least 1 symbol</P1>
       </div>
     </div>
   );
@@ -122,9 +122,9 @@ export default function Field({
         <PasswordValidations validations={validations} />
       ) : (
         <ErrorWrapper>
-          <P css={STYLES_SMALL_TEXT} style={{ marginTop: "8px" }}>
+          <P1 css={STYLES_SMALL_TEXT} style={{ marginTop: "8px" }}>
             {(showError && error) || (showSuccess && success)}
-          </P>
+          </P1>
         </ErrorWrapper>
       )}
     </div>

@@ -48,27 +48,23 @@ export default class SystemPageRadios extends React.Component {
 
   render() {
     return (
-      <SystemPage
-        title="SDS: Radios"
-        description="..."
-        url="https://slate.host/_/system/radios"
-      >
+      <SystemPage title="SDS: Radios" description="..." url="https://slate.host/_/system/radios">
         <System.H1>
           Radios <ViewSourceLink file="system/radios.js" />
         </System.H1>
         <br />
         <br />
-        <System.P>
-          The Radio component is used when you require a user to select only one
-          value in a series of options.
-        </System.P>
+        <System.P1>
+          The Radio component is used when you require a user to select only one value in a series
+          of options.
+        </System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>Import React and the RadioGroup Component.</System.P>
+        <System.P1>Import React and the RadioGroup Component.</System.P1>
         <br />
         <br />
         <CodeBlock>
@@ -80,7 +76,7 @@ import { RadioGroup } from "slate-react-system";`}
         <System.H2>Usage</System.H2>
         <hr />
         <br />
-        <System.P>Define the radio group values and labels.</System.P>
+        <System.P1>Define the radio group values and labels.</System.P1>
         <br />
         <CodeBlock>
           {`const RADIO_GROUP_OPTIONS = [
@@ -114,7 +110,7 @@ import { RadioGroup } from "slate-react-system";`}
 ];`}
         </CodeBlock>
         <br />
-        <System.P>Declare the RadioGroup component.</System.P>
+        <System.P1>Declare the RadioGroup component.</System.P1>
         <br />
         <CodeBlock>
           {`class ExampleOne extends React.Component {
@@ -163,22 +159,14 @@ import { RadioGroup } from "slate-react-system";`}
               rows: [
                 {
                   id: 1,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      onChange
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>onChange</span>,
                   b: "function",
                   c: "null",
                   d: "Function called upon an onChange event",
                 },
                 {
                   id: 2,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      selected
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>selected</span>,
                   b: "boolean",
                   c: "false",
                   d:
@@ -186,15 +174,10 @@ import { RadioGroup } from "slate-react-system";`}
                 },
                 {
                   id: 3,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      options
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>options</span>,
                   b: "Array",
                   c: "[]",
-                  d:
-                    "An array of options, each of which has a value and a label",
+                  d: "An array of options, each of which has a value and a label",
                 },
                 {
                   id: 4,

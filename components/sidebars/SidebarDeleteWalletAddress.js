@@ -20,14 +20,14 @@ export default class SidebarDeleteWalletAddress extends React.Component {
   render() {
     return (
       <div>
-        <System.P
+        <System.P1
           style={{
             fontFamily: Constants.font.semiBold,
             fontSize: Constants.typescale.lvl3,
           }}
         >
           Are you sure you want to delete the selected wallet?
-        </System.P>
+        </System.P1>
 
         <System.ButtonPrimary full style={{ marginTop: 48 }} onClick={this._handleSubmit}>
           Delete

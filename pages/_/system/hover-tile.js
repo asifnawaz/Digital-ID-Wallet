@@ -19,16 +19,14 @@ export default class SystemHoverTile extends React.Component {
         </System.H1>
         <br />
         <br />
-        <System.P>
-          The Hover Tile component is an animated, moving container.
-        </System.P>
+        <System.P1>The Hover Tile component is an animated, moving container.</System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>Import React and the Hover Tile Component.</System.P>
+        <System.P1>Import React and the Hover Tile Component.</System.P1>
         <br />
         <br />
         <CodeBlock>
@@ -40,7 +38,7 @@ import { HoverTile } from "slate-react-system";`}
         <System.H2>Usage</System.H2>
         <hr />
         <br />
-        <System.P>Declare the Hover Tile component.</System.P>
+        <System.P1>Declare the Hover Tile component.</System.P1>
         <CodeBlock>
           {`class Example extends React.Component {
   render() {
@@ -57,9 +55,7 @@ import { HoverTile } from "slate-react-system";`}
         <System.H2>Output</System.H2>
         <hr />
         <br />
-        <System.HoverTile style={{ padding: 24 }}>
-          Example Content
-        </System.HoverTile>
+        <System.HoverTile style={{ padding: 24 }}>Example Content</System.HoverTile>
         <br />
         <br />
         <br />
@@ -95,8 +91,7 @@ import { HoverTile } from "slate-react-system";`}
                   a: "style",
                   b: "Object",
                   c: "{}",
-                  d:
-                    "Style object used to style the Hover Tile (background-color, etc.)",
+                  d: "Style object used to style the Hover Tile (background-color, etc.)",
                 },
               ],
             }}

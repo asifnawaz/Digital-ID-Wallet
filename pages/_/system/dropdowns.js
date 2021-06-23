@@ -45,21 +45,20 @@ export default class SystemPageDropdowns extends React.Component {
         </System.H1>
         <br />
         <br />
-        <System.P>
-          The Dropdown component is used to present the user a list of values
-          where they can select a single option.
-        </System.P>
+        <System.P1>
+          The Dropdown component is used to present the user a list of values where they can select
+          a single option.
+        </System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>
-          Import React and the <System.CodeText>SelectMenu</System.CodeText>{" "}
-          and/or the <System.CodeText>SelectCountryMenu</System.CodeText>{" "}
-          Components.
-        </System.P>
+        <System.P1>
+          Import React and the <System.CodeText>SelectMenu</System.CodeText> and/or the{" "}
+          <System.CodeText>SelectCountryMenu</System.CodeText> Components.
+        </System.P1>
         <br />
         <br />
         <CodeBlock>
@@ -93,10 +92,9 @@ import { SelectMenu, SelectCountryMenu } from "slate-react-system";`}
         <br />
         <br />
         <br />
-        <System.P>
-          Define the dropdown menu options. Each entry must have a name and a
-          value.
-        </System.P>
+        <System.P1>
+          Define the dropdown menu options. Each entry must have a name and a value.
+        </System.P1>
         <br />
         <CodeBlock>
           {`const SELECT_MENU_OPTIONS = [
@@ -116,10 +114,10 @@ import { SelectMenu, SelectCountryMenu } from "slate-react-system";`}
         </CodeBlock>
         <br />
         <br />
-        <System.P>
+        <System.P1>
           Declare the Dropdown component. Default values can be assigned using{" "}
           <System.CodeText>value</System.CodeText>.
-        </System.P>
+        </System.P1>
         <br />
         <CodeBlock>
           {`class ExampleOne extends React.Component {
@@ -178,9 +176,7 @@ class ExampleTwo extends React.Component {
         <br />
         <br />
         <br />
-        <System.P>
-          Declare a dropdown to select from a list of countries.
-        </System.P>
+        <System.P1>Declare a dropdown to select from a list of countries.</System.P1>
         <br />
         <CodeBlock>
           {`class ExampleThree extends React.Component {
@@ -220,11 +216,7 @@ class ExampleTwo extends React.Component {
               rows: [
                 {
                   id: 1,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      options
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>options</span>,
                   b: "Array",
                   c: "[]",
                   d:
@@ -232,22 +224,14 @@ class ExampleTwo extends React.Component {
                 },
                 {
                   id: 2,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      onChange
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>onChange</span>,
                   b: "function",
                   c: "null",
                   d: "Function called upon an onChange event",
                 },
                 {
                   id: 3,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      value
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>value</span>,
                   b: "string",
                   c: "null",
                   d:

@@ -1,6 +1,3 @@
-import CID from "cids";
-import multihashing from "multihashing-async";
-
 import * as Actions from "~/common/actions";
 import * as Store from "~/common/store";
 import * as Constants from "~/common/constants";
@@ -52,53 +49,62 @@ const getCookie = (name) => {
   if (match) return match[2];
 };
 
-export const uploadLink = async ({ url, slate, resources }) => {
-  const mql = await Actions.mql(url);
-  if (!mql) return;
-  if (mql.status !== "success") {
-    Events.dispatchMessage({ message: "Invalid link" });
-    return;
-  }
-  const { data } = mql;
-  const bytes = new TextEncoder().encode(url);
-  const hash = await multihashing(bytes, "sha2-256");
-  const cid = new CID(1, "dag-pb", hash);
-  const filename = Strings.createSlug(data.title);
+export const uploadLink = async ({ url, slate }) => {
+  // let parsedURL;
+  // try {
+  //   parsedURL = new URL(url);
+  // } catch (e) {
+  //   console.log(e);
+  //   Events.dispatchMessage({ message: "Not a valid link" });
+  //   return;
+  // }
+  // const domain = parsedURL.hostname.replace("www.", ""); //NOTE(martina): returns example.com
+  // const mql = await Actions.mql(url);
+  // if (!mql) return;
+  // if (mql.status !== "success") {
+  //   Events.dispatchMessage({ message: "Invalid link" });
+  //   return;
+  // }
+  // const { data } = mql;
+  // const bytes = new TextEncoder().encode(url);
+  // const hash = await multihashing(bytes, "sha2-256");
+  // const cid = new CID(1, "dag-pb", hash);
+  // const filename = Strings.createSlug(data.title);
 
-  const file = {
-    filename,
-    cid: cid.toString(),
-    data: {
-      type: "link",
-      size: 0,
-      name: data.title,
-      author: data.author,
-      source: data.publisher,
-      body: data.description,
-      coverImage: data.screenshot
-        ? {
-            data: {
-              type: "image/png",
-              size: data.screenshot.size,
-              url: data.screenshot.url,
-            },
-          }
-        : null,
-      link: {
-        url: data.url,
-        image: data.image?.url,
-        logo: data.logo?.url,
-      },
-    },
-  };
-  console.log(file);
-  let createResponse = await Actions.createFile({ file, slate });
+  // const file = {
+  //   filename,
+  //   cid: cid.toString(),
+  //   data: {
+  //     type: "link",
+  //     size: 0,
+  //     name: data.title,
+  //     author: data.author,
+  //     source: data.publisher,
+  //     body: data.description,
+  //     coverImage: data.screenshot
+  //       ? {
+  //           data: {
+  //             type: "image/png",
+  //             size: data.screenshot.size,
+  //             url: data.screenshot.url,
+  //           },
+  //         }
+  //       : null,
+  //     link: {
+  //       url: data.url,
+  //       image: data.image?.url,
+  //       logo: data.logo?.url,
+  //       domain,
+  //     },
+  //   },
+  // };
+  let createResponse = await Actions.createLink({ url, slate });
   console.log(createResponse);
   if (Events.hasError(createResponse)) {
     return;
   }
 
-  const { added, skipped, files } = createResponse.data;
+  const { added, skipped } = createResponse.data;
   if (added) {
     Events.dispatchMessage({ message: "Link added", status: "INFO" });
   } else if (skipped) {
@@ -107,15 +113,15 @@ export const uploadLink = async ({ url, slate, resources }) => {
     });
     return;
   }
-  const fileId = files && files.length ? files[0].id : null;
-  console.log(fileId);
-  if (!fileId) return;
+  // const fileId = files && files.length ? files[0].id : null;
+  // console.log(fileId);
+  // if (!fileId) return;
 
-  const REQUEST_HEADERS = {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-    Authorization: getCookie(Credentials.session.key),
-  };
+  // const REQUEST_HEADERS = {
+  //   Accept: "application/json",
+  //   "Content-Type": "application/json",
+  //   Authorization: getCookie(Credentials.session.key),
+  // };
 
   // try {
   //   const response = await fetch(`${resources.upload}/api/data/url`, {

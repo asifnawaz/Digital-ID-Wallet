@@ -1,8 +1,30 @@
+export const Loader = (props) => {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.25"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      height={props.height}
+      style={props.style}
+    >
+      <path d="M8 1.68237V4.34904" />
+      <path d="M8 12.3491V15.0158" />
+      <path d="M3.28662 3.63574L5.17329 5.52241" />
+      <path d="M10.8267 11.1758L12.7133 13.0624" />
+      <path d="M1.33337 8.34912H4.00004" />
+      <path d="M12 8.34912H14.6667" />
+      <path d="M3.28662 13.0624L5.17329 11.1758" />
+      <path d="M10.8267 5.52241L12.7133 3.63574" />
+    </svg>
+  );
+};
+
 export const Link = (props) => {
   return (
     <svg
-      width="24"
-      height="24"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -21,8 +43,6 @@ export const Link = (props) => {
 export const ExternalLink = (props) => {
   return (
     <svg
-      width="24"
-      height="24"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"

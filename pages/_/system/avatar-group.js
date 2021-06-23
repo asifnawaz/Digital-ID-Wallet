@@ -29,16 +29,16 @@ export default class SystemAvatarGroup extends React.Component {
         </System.H1>
         <br />
         <br />
-        <System.P>
+        <System.P1>
           The AvatarGroup component is a compact way to show a group users or contributors.
-        </System.P>
+        </System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>Import React and the AvatarGroup Component.</System.P>
+        <System.P1>Import React and the AvatarGroup Component.</System.P1>
         <br />
         <CodeBlock>
           {`import * as React from "react";
@@ -49,7 +49,7 @@ import { AvatarGroup } from "slate-react-system";`}
         <System.H2>Usage</System.H2>
         <hr />
         <br />
-        <System.P>Create an array of images.</System.P>
+        <System.P1>Create an array of images.</System.P1>
         <br />
         <CodeBlock>
           {`const images = [
@@ -62,7 +62,7 @@ import { AvatarGroup } from "slate-react-system";`}
         </CodeBlock>
         <br />
         <br />
-        <System.P>Declare the AvatarGroup component.</System.P>
+        <System.P1>Declare the AvatarGroup component.</System.P1>
         <br />
         <CodeBlock>{`<AvatarGroup avatars={images} />`}</CodeBlock>
         <br />

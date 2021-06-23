@@ -29,17 +29,17 @@ export default class SystemPageCheckboxes extends React.Component {
         </System.H1>
         <br />
         <br />
-        <System.P>
-          The Checkbox component is used in forms when a users needs to select a
-          true or false value.
-        </System.P>
+        <System.P1>
+          The Checkbox component is used in forms when a users needs to select a true or false
+          value.
+        </System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>Import React and the CheckBox Component.</System.P>
+        <System.P1>Import React and the CheckBox Component.</System.P1>
         <br />
         <br />
         <CodeBlock>
@@ -51,10 +51,10 @@ import { CheckBox } from "slate-react-system";`}
         <System.H2>Usage</System.H2>
         <hr />
         <br />
-        <System.P>
-          Declare the CheckBox component. Any children will be rendered as the
-          label to the right of the checkbox.
-        </System.P>
+        <System.P1>
+          Declare the CheckBox component. Any children will be rendered as the label to the right of
+          the checkbox.
+        </System.P1>
         <br />
 
         <CodeBlock>
@@ -141,26 +141,17 @@ class ExampleTwo extends React.Component {
               rows: [
                 {
                   id: 1,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      onChange
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>onChange</span>,
                   b: "function",
                   c: "null",
                   d: "Function called upon an onChange event",
                 },
                 {
                   id: 2,
-                  a: (
-                    <span style={{ fontFamily: Constants.font.semiBold }}>
-                      value
-                    </span>
-                  ),
+                  a: <span style={{ fontFamily: Constants.font.semiBold }}>value</span>,
                   b: "boolean",
                   c: "false",
-                  d:
-                    "The value of the checkbox. Can be used to assign default values as well",
+                  d: "The value of the checkbox. Can be used to assign default values as well",
                 },
                 {
                   id: 3,

@@ -133,9 +133,9 @@ export default class CTATransition extends React.Component {
                 <div css={STYLES_POPOVER}>
                   <Logo height="36px" style={{ display: "block", margin: "56px auto 0px auto" }} />
 
-                  <System.P style={{ margin: "56px 0", textAlign: "center" }}>
+                  <System.P1 style={{ margin: "56px 0", textAlign: "center" }}>
                     An open-source file sharing network for research and collaboration
-                  </System.P>
+                  </System.P1>
                   <Link href={"/_/auth?tab=signup"} onAction={this._handleAction}>
                     <div style={{ textDecoration: `none` }}>
                       <System.ButtonPrimary full style={{ marginBottom: 16 }}>

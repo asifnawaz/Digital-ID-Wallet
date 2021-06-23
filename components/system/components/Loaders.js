@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as Constants from "~/common/constants";
+import * as SVG from "~/common/svg";
 
 import { css } from "@emotion/react";
 
@@ -184,25 +185,56 @@ const STYLES_LOADER_PROGRESS = css`
 
 // Loader 6
 
+// const STYLES_LOADER_SPINNER = css`
+//   display: inline-block;
+//   width: 48px;
+//   height: 48px;
+//   border: 2px solid ${Constants.system.brand};
+//   border-radius: 50%;
+//   border-top-color: ${Constants.system.foreground};
+//   animation: slate-client-animation-spin 1s ease-in-out infinite;
+
+//   @keyframes slate-client-animation-spin {
+//     to {
+//       -webkit-transform: rotate(360deg);
+//     }
+//   }
+// `;
+
+// export const LoaderSpinner = (props) => <div css={STYLES_LOADER_SPINNER} {...props} />;
+
 const STYLES_LOADER_SPINNER = css`
   display: inline-block;
-  width: 48px;
-  height: 48px;
-  border: 2px solid ${Constants.system.brand};
-  border-radius: 50%;
-  border-top-color: ${Constants.system.foreground};
-  animation: slate-client-animation-spin 1s ease-in-out infinite;
+  animation: slate-client-animation-spin 1.5s cubic-bezier(0.6, 0, 0.4, 1) infinite;
 
   @keyframes slate-client-animation-spin {
+    from {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
     to {
       -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
     }
   }
 `;
 
 export const LoaderProgress = (props) => <div css={STYLES_LOADER_PROGRESS} {...props} />;
 
-export const LoaderSpinner = (props) => <div css={STYLES_LOADER_SPINNER} {...props} />;
+export const LoaderSpinner = (props) => (
+  <span css={STYLES_LOADER_SPINNER}>
+    <SVG.Loader
+      {...props}
+      style={{
+        display: "block",
+        color: Constants.system.blue,
+        height: 16,
+        width: 16,
+        ...props.style,
+      }}
+    />
+  </span>
+);
 
 export const LoaderCircles = () => (
   <div>

@@ -25,7 +25,7 @@ export default class SystemPageRoot extends React.Component {
         />
         <System.H1>SDS {Constants.values.sds}</System.H1>
         <br />
-        <System.P>
+        <System.P1>
           The <strong>Slate Design System</strong> is an open source resource with examples of
           components, constants, and experiences. Any code changes made to the components in the
           Design System will change the appearance and function of{" "}
@@ -46,12 +46,12 @@ export default class SystemPageRoot extends React.Component {
             Textile's Hub
           </a>
           .
-        </System.P>
+        </System.P1>
         <br /> <br />
         <br />
         <System.H2>slate-react-system</System.H2>
         <br />
-        <System.P>
+        <System.P1>
           You can use these components, experiences, and constants in your own React projects.
           First, install the{" "}
           <a href="https://www.npmjs.com/package/slate-react-system" target="_blank">
@@ -72,7 +72,7 @@ const Component = () => <ButtonPrimary>Hello world</ButtonPrimary>;`}
           </CodeBlock>
           <br />
           <br />
-        </System.P>
+        </System.P1>
         <br />
         <br />
       </SystemPage>

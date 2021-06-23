@@ -27,14 +27,16 @@ export default class SystemPageSliders extends React.Component {
         </System.H1>
         <br />
         <br />
-        <System.P>The Slider component is used to select from a range of numeric values.</System.P>
+        <System.P1>
+          The Slider component is used to select from a range of numeric values.
+        </System.P1>
         <br />
         <br />
         <br />
         <System.H2>Imports</System.H2>
         <hr />
         <br />
-        <System.P>Import React and the Slider Component.</System.P>
+        <System.P1>Import React and the Slider Component.</System.P1>
         <br />
         <br />
         <CodeBlock>
@@ -67,12 +69,12 @@ import { Slider } from "slate-react-system";`}
           onChange={this._handleChange}
         />
         <br />
-        <System.P>
+        <System.P1>
           Declare the Slider component, specifying a <System.CodeText>min</System.CodeText>,{" "}
           <System.CodeText>max</System.CodeText>, and <System.CodeText>step</System.CodeText>.
           Declaring <System.CodeText>discrete</System.CodeText> true will yield a slider that snaps
           to each step.
-        </System.P>
+        </System.P1>
         <br />
         <br />
         <CodeBlock>
@@ -140,12 +142,12 @@ import { Slider } from "slate-react-system";`}
           onChange={this._handleChange}
         />
         <br />
-        <System.P>
+        <System.P1>
           You can declare the Slider component with <System.CodeText>inputBox</System.CodeText> or{" "}
           <System.CodeText>bubble</System.CodeText> to include a display of the value. Values can be
           entered in the input box and the input box can be styled with{" "}
           <System.CodeText>inputStyle</System.CodeText>.
-        </System.P>
+        </System.P1>
         <br />
         <br />
         <CodeBlock>

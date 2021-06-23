@@ -115,7 +115,7 @@ export default class SidebarCreateSlate extends React.Component {
     const url = `/${this.props.viewer.username}/${slug}`;
     return (
       <div>
-        <System.P
+        <System.P1
           style={{
             fontFamily: Constants.font.semiBold,
             fontSize: Constants.typescale.lvl3,
@@ -123,18 +123,18 @@ export default class SidebarCreateSlate extends React.Component {
           }}
         >
           Create collection
-        </System.P>
+        </System.P1>
 
         <div css={STYLES_GROUPING}>
-          <System.P css={STYLES_HEADER}>Name</System.P>
-          <System.P
+          <System.P1 css={STYLES_HEADER}>Name</System.P1>
+          <System.P1
             css={STYLES_TEXT}
             style={{
               marginTop: 12,
             }}
           >
             Give your collection a name so you and others can find it on Slate and on the web.
-          </System.P>
+          </System.P1>
 
           <System.Input
             autoFocus
@@ -147,7 +147,7 @@ export default class SidebarCreateSlate extends React.Component {
             descriptionStyle={{ fontSize: "20px !important" }}
             labelStyle={{ fontSize: "20px" }}
           />
-          <System.P
+          <System.P1
             style={{
               marginTop: 12,
               color: Constants.system.textGrayLight,
@@ -155,19 +155,19 @@ export default class SidebarCreateSlate extends React.Component {
             }}
           >
             https://slate.host{url}
-          </System.P>
+          </System.P1>
         </div>
 
         <div css={STYLES_GROUPING}>
-          <System.P css={STYLES_HEADER}>Description</System.P>
-          <System.P
+          <System.P1 css={STYLES_HEADER}>Description</System.P1>
+          <System.P1
             css={STYLES_TEXT}
             style={{
               marginTop: 12,
             }}
           >
             Give your collection a description, add links, and connect it to other collections.
-          </System.P>
+          </System.P1>
 
           <System.Textarea
             style={{ marginTop: 12 }}
@@ -180,15 +180,15 @@ export default class SidebarCreateSlate extends React.Component {
         </div>
 
         <div css={STYLES_GROUPING}>
-          <System.P css={STYLES_HEADER}>Tags</System.P>
-          <System.P
+          <System.P1 css={STYLES_HEADER}>Tags</System.P1>
+          <System.P1
             css={STYLES_TEXT}
             style={{
               marginTop: 12,
             }}
           >
             Add tags to a collection to categorize it.
-          </System.P>
+          </System.P1>
           <System.Tag
             name="tags"
             placeholder={`Edit tags for ${this.state.name ? this.state.name : "this collection"}`}
@@ -200,10 +200,10 @@ export default class SidebarCreateSlate extends React.Component {
         </div>
 
         <div css={STYLES_GROUPING}>
-          <System.P css={STYLES_HEADER} style={{ marginBottom: 12 }}>
+          <System.P1 css={STYLES_HEADER} style={{ marginBottom: 12 }}>
             Privacy
-          </System.P>
-          <System.P
+          </System.P1>
+          <System.P1
             css={STYLES_TEXT}
             style={{
               marginTop: 12,
@@ -211,7 +211,7 @@ export default class SidebarCreateSlate extends React.Component {
           >
             All collections are public by default. This means they can be discovered and seen by
             anyone on the internet. If you make it private, only you will be able to see it.
-          </System.P>
+          </System.P1>
           <RadioGroup
             name="isPublic"
             options={[

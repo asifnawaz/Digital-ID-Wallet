@@ -73,9 +73,9 @@ const ResendButton = ({ onResend }) => {
   }, [status]);
 
   return (
-    <System.P css={STYLES_RESEND_BUTTON} style={{ display: "inline" }} onClick={handleResend}>
+    <System.P1 css={STYLES_RESEND_BUTTON} style={{ display: "inline" }} onClick={handleResend}>
       {getResendText({ status, timeLeft: timer })}
-    </System.P>
+    </System.P1>
   );
 };
 
@@ -121,9 +121,9 @@ export default function Verification({ onVerify, title = DEFAULT_TITLE, onResend
       />
       <AnimateSharedLayout>
         <motion.div layout>
-          <System.P css={STYLES_HELPER}>
+          <System.P1 css={STYLES_HELPER}>
             Didn’t receive an email? <ResendButton onResend={onResend} />
-          </System.P>
+          </System.P1>
         </motion.div>
       </AnimateSharedLayout>
     </SignUpPopover>

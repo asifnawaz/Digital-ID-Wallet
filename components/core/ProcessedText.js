@@ -1,4 +1,4 @@
-import { H1, H2, H3, H4, P, UL, OL, LI, Link } from "~/components/system/components/Typography";
+import { H1, H2, H3, H4, P1, UL, OL, LI, A } from "~/components/system/components/Typography";
 
 import { Markdown } from "~/components/system/components/Markdown";
 
@@ -13,7 +13,7 @@ const ProcessedText = ({ text, dark }) => {
     ol: OL,
     ul: UL,
     li: LI,
-    a: (props) => <Link dark={dark} {...props} />,
+    a: (props) => <A dark={dark} {...props} />,
   };
   return <Markdown md={text} options={{ remarkReactComponents }} />;
 };

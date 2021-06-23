@@ -2,7 +2,7 @@ import * as SVG from "~/common/svg";
 import * as React from "react";
 
 import { css } from "@emotion/react";
-import { P } from "~/components/system/components/Typography";
+import { P1 } from "~/components/system/components/Typography";
 
 export default function Select({
   options = [],
@@ -35,7 +35,7 @@ export default function Select({
           inputStyle,
         ]}
       >
-        <P
+        <P1
           dark
           css={css`
             font-size: 14px;
@@ -44,7 +44,7 @@ export default function Select({
           `}
         >
           {label}
-        </P>
+        </P1>
         <SVG.ChevronDown height="16px" width="16px" display="block" />
       </div>
       <select
