@@ -8,7 +8,7 @@ import * as Styles from "~/common/styles";
 
 import Field from "~/components/core/Field";
 
-import { P } from "~/components/system";
+import { P1 } from "~/components/system";
 import { AnimateSharedLayout, motion } from "framer-motion";
 import { useForm } from "~/common/hooks";
 import { css } from "@emotion/react";

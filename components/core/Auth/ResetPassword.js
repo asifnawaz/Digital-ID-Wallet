@@ -8,7 +8,7 @@ import * as SVG from "~/common/svg";
 import Field from "~/components/core/Field";
 
 import { AnimateSharedLayout, motion } from "framer-motion";
-import { P } from "~/components/system";
+import { P1 } from "~/components/system";
 import { useForm } from "~/common/hooks";
 import { css } from "@emotion/react";
 

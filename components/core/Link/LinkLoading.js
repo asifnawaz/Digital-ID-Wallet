@@ -18,7 +18,7 @@ const STYLES_IMAGE_CONTAINER = css`
 
 export default function LinkLoading({ file }) {
   const { link, name } = file.data;
-  const { image, body, url } = link;
+  const { image, url } = link;
   return (
     <div
       css={Styles.VERTICAL_CONTAINER_CENTERED}
@@ -31,7 +31,19 @@ export default function LinkLoading({ file }) {
         <System.H3 style={{ marginBottom: 16, color: Constants.system.textBlack }}>
           {name}
         </System.H3>
-        <LinkTag url={url} style={{ marginBottom: 16 }} />
+        <span style={{ marginBottom: 16 }}>
+          <LinkTag
+            url={url}
+            containerStyle={{
+              backgroundColor: Constants.system.brand,
+              borderRadius: 8,
+              padding: "8px 16px",
+            }}
+            style={{
+              color: Constants.system.white,
+            }}
+          />
+        </span>
         <LoaderSpinner style={{ height: 24, width: 24 }} />
       </div>
     </div>

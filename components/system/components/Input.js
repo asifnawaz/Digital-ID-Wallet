@@ -4,7 +4,6 @@ import * as SVG from "~/common/svg";
 import * as Strings from "~/common/strings";
 
 import { css } from "@emotion/react";
-import { P } from "~/components/system";
 
 import { DescriptionGroup } from "~/components/system/components/fragments/DescriptionGroup";
 

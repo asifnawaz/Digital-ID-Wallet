@@ -1,5 +1,5 @@
 import * as System from "~/components/system";
-import * as SVG from "~/common/SVG";
+import * as SVG from "~/common/svg";
 import * as Constants from "~/common/constants";
 import * as Styles from "~/common/styles";
 
@@ -25,10 +25,6 @@ const STYLES_COPY_PASTE = css`
 `;
 
 const STYLES_TAG_BACKGROUND = css`
-  background-color: ${Constants.system.brand};
-  border-radius: 8px;
-  padding: 8px 16px;
-
   ${Styles.HORIZONTAL_CONTAINER_CENTERED}
 `;
 
@@ -50,15 +46,14 @@ export default function LinkTag({ url, ...props }) {
   }
   return (
     <a css={Styles.LINK} href={url} target="_blank">
-      <div css={STYLES_TAG_BACKGROUND} style={props.style}>
-        <SVG.ExternalLink
-          height="16px"
-          style={{ color: Constants.system.white, paddingRight: 4 }}
-        />
-        <System.P2 style={{ color: Constants.system.white, paddingRight: 8 }}>{shortURL}</System.P2>
+      <div css={STYLES_TAG_BACKGROUND} style={props.containerStyle}>
+        <SVG.ExternalLink height="16px" style={{ paddingRight: 4, ...props.style }} />
+        <System.P2 style={{ paddingRight: 8, ...props.style }}>{shortURL}</System.P2>
         <div css={[Styles.ICON_CONTAINER, STYLES_COPY_PASTE]} onClick={onCopy}>
-          <DynamicIcon successState={<SVG.Check height="16px" style={{ display: "block" }} />}>
-            <SVG.CopyAndPaste style={{ display: "block" }} height="16px" />
+          <DynamicIcon
+            successState={<SVG.Check height="16px" style={{ display: "block", ...props.style }} />}
+          >
+            <SVG.CopyAndPaste style={{ display: "block", ...props.style }} height="16px" />
           </DynamicIcon>
         </div>
         <input ref={_ref} readOnly value={url} css={STYLES_COPY_INPUT} />

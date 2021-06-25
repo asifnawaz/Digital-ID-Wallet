@@ -179,6 +179,7 @@ const fetchLinkData = async (url) => {
   if (!mql || mql.status !== "success") {
     return;
   }
+  console.log("microlink:", mql?.data);
   return mql?.data;
 };
 
@@ -212,6 +213,7 @@ const fetchEmbed = async (url) => {
       }
     );
     const data = await request.json();
+    console.log("iframely:", data);
     return data?.html;
   } catch (e) {
     console.log(e);

@@ -5,62 +5,16 @@ import * as Events from "~/common/custom-events";
 import * as Strings from "~/common/strings";
 import * as Actions from "~/common/actions";
 import * as Styles from "~/common/styles";
-import * as SVG from "~/common/SVG";
+import * as SVG from "~/common/svg";
 
 import UnityFrame from "~/components/core/UnityFrame";
 import FontFrame from "~/components/core/FontFrame/index.js";
 import MarkdownFrame from "~/components/core/MarkdownFrame";
 import LinkLoading from "~/components/core/Link/LinkLoading";
+import LinkCard from "~/components/core/Link/LinkCard";
 
 import { css } from "@emotion/react";
 import { LoaderSpinner } from "~/components/system/components/Loaders";
-
-const STYLES_FAILURE = css`
-  color: ${Constants.system.white};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  margin: 0;
-  padding: 24px 36px;
-  height: 100px;
-  border-radius: 4px;
-  width: 100%;
-  min-height: 10%;
-  height: 100%;
-  text-decoration: none;
-  background-color: rgba(20, 20, 20, 0.8);
-`;
-
-const STYLES_OBJECT = css`
-  display: block;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 10%;
-  height: 100%;
-  user-select: none;
-`;
-
-const STYLES_ASSET = css`
-  user-select: none;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  min-height: 10%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-`;
-
-const STYLES_IMAGE = css`
-  user-select: none;
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-`;
 
 const STYLES_IFRAME = (theme) => css`
   display: block;
@@ -69,10 +23,6 @@ const STYLES_IFRAME = (theme) => css`
   // NOTE(Amine): lightbackground as fallback when html file doesn't have any
   background-color: ${theme.system.wallLight};
 `;
-
-const typeMap = {
-  "video/quicktime": "video/mp4",
-};
 
 export default class SlateLinkObject extends React.Component {
   state = {
@@ -85,7 +35,7 @@ export default class SlateLinkObject extends React.Component {
     if (html) {
       return (
         <div
-          style={{ width: "100%", maxHeight: "100vh" }}
+          style={{ width: "90%", maxHeight: "90%" }}
           dangerouslySetInnerHTML={{
             __html: html,
           }}
@@ -112,7 +62,7 @@ export default class SlateLinkObject extends React.Component {
         </div>
       );
     } else {
-      return <div>iframe blocked. work in progress</div>;
+      return <LinkCard file={this.props.file} />;
     }
   }
 }
