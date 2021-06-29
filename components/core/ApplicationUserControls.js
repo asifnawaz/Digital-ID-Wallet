@@ -107,12 +107,16 @@ const OpenIntercom = ({ user }) => {
   
   return(
     <span 
-      style={{ cursor: "pointer" }} 
+      style={{ cursor: "pointer", display: "block" }}
       onClick={() => {
+          onTogglePopup();
           update({
             name: user.data.name,
-            username: user.username,  
             email: user.email,
+            customAttributes: { 
+              slate_userid: user.id,
+              username: user.username,  
+            }
           });
           show()
         }
@@ -224,7 +228,11 @@ export class ApplicationUserControlsPopup extends React.Component {
         [
           {
             text: (
-              <OpenIntercom user={this.props.viewer} />
+              <OpenIntercom 
+                style={{ display: "block" }} 
+                user={this.props.viewer} 
+                onTogglePopup={this.props.onTogglePopup} 
+              />
             ),
           },
           {

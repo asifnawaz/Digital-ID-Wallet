@@ -286,8 +286,11 @@ const OpenIntercom = ({ user }) => {
       onClick={() => {
           update({
             name: user.data.name,
-            username: user.username,  
             email: user.email,
+            customAttributes: { 
+              slate_userid: user.id, 
+              username: user.username 
+            }
           });
           show()
         }
